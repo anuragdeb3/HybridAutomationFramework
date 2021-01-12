@@ -2,20 +2,20 @@
 <testng-results skipped="0" failed="0" ignored="0" total="1" passed="1">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="15185" started-at="2020-11-10T13:31:19Z" finished-at="2020-11-10T13:31:35Z">
+  <suite name="Default suite" duration-ms="86" started-at="2020-11-26T13:45:16Z" finished-at="2020-11-26T13:45:16Z">
     <groups>
     </groups>
-    <test name="Default test" duration-ms="15185" started-at="2020-11-10T13:31:19Z" finished-at="2020-11-10T13:31:35Z">
+    <test name="Default test" duration-ms="86" started-at="2020-11-26T13:45:16Z" finished-at="2020-11-26T13:45:16Z">
       <class name="com.testcases.NewTest">
-        <test-method status="PASS" signature="beforeTest()[pri:0, instance:com.testcases.NewTest@57baeedf]" name="beforeTest" is-config="true" duration-ms="4716" started-at="2020-11-10T13:31:19Z" finished-at="2020-11-10T13:31:24Z">
+        <test-method status="PASS" signature="beforeTest()[pri:0, instance:com.testcases.NewTest@57baeedf]" name="beforeTest" is-config="true" duration-ms="19" started-at="2020-11-26T13:45:16Z" finished-at="2020-11-26T13:45:16Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- beforeTest -->
-        <test-method status="PASS" signature="login()[pri:0, instance:com.testcases.NewTest@57baeedf]" name="login" duration-ms="8812" started-at="2020-11-10T13:31:24Z" finished-at="2020-11-10T13:31:33Z">
+        <test-method status="PASS" signature="login()[pri:0, instance:com.testcases.NewTest@57baeedf]" name="login" duration-ms="9" started-at="2020-11-26T13:45:16Z" finished-at="2020-11-26T13:45:16Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- login -->
-        <test-method status="PASS" signature="afterTest()[pri:0, instance:com.testcases.NewTest@57baeedf]" name="afterTest" is-config="true" duration-ms="1602" started-at="2020-11-10T13:31:33Z" finished-at="2020-11-10T13:31:35Z">
+        <test-method status="PASS" signature="afterTest()[pri:0, instance:com.testcases.NewTest@57baeedf]" name="afterTest" is-config="true" duration-ms="0" started-at="2020-11-26T13:45:16Z" finished-at="2020-11-26T13:45:16Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- afterTest -->

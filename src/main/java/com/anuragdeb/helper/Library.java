@@ -1,4 +1,4 @@
-package helper;
+package com.anuragdeb.helper;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -25,7 +25,6 @@ import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
@@ -37,6 +36,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 
+import com.anuragdeb.helper.Library;
 import com.jcraft.jsch.Channel;
 import com.jcraft.jsch.ChannelExec;
 import com.jcraft.jsch.ChannelSftp;
@@ -46,14 +46,12 @@ import com.jcraft.jsch.Session;
 import com.jcraft.jsch.SftpException;
 import com.jcraft.jsch.SftpProgressMonitor;
 
-import helper.Library;
-
 public class Library {
-	
-	public static  WebDriver driver;
-	
+
+	public static WebDriver driver;
+
 	public Library(WebDriver driver) {
-		
+
 		// Please set the values for the application name, uri and segment name here.
 		// super.name = "";
 		// super.uri = "";
@@ -61,75 +59,82 @@ public class Library {
 		Library.driver = driver;
 	}
 
-	//final static Logger log = Logger.getLogger(Library.class);
+	// final static Logger log = Logger.getLogger(Library.class);
 	SoftAssert softAssert = new SoftAssert();
-	public static Properties prop= new Properties();
+	public static Properties prop = new Properties();
 
-	
+	public String getClassName() {
 
+		Class<?> enclosingClass = getClass().getEnclosingClass();
+		if (enclosingClass != null) {
+			return enclosingClass.getName();
+		} else {
+			return getClass().getName();
+		}
 
-	public static String getVal(String key)
-	{
-		String value =prop.getProperty(key);
+	}
+
+	public static String getVal(String key) {
+		String value = prop.getProperty(key);
 		return value;
 	}
-	
-	
-	public static void LoadConfig(String FileName){
-		String path =System.getProperty("user.dir");
-		String fpath =path + "\\"+FileName; 
+
+	public static void LoadConfig(String FileName) {
+		String path = System.getProperty("user.dir");
+		String fpath = path + "\\" + FileName;
 		try {
 			FileInputStream inStream = new FileInputStream(fpath);
 			prop.load(inStream);
 			inStream.close();
-		}
-		catch(NullPointerException e) {
-			System.out.println("Can't load null, Check Path. Cause : "+e);
+		} catch (NullPointerException e) {
+			System.out.println("Can't load null, Check Path. Cause : " + e);
 			try {
-				/*HTMLReport.updateErrorMessageintoHTMLReport("Cause : " + e,  	"Null pointer Exception Raised",
-						"Kindly Check if the parameters are blank or not");*/
-				System.out.println("Kindly Check if the parameters are blank or not :"+e);
+				/*
+				 * HTMLReport.updateErrorMessageintoHTMLReport("Cause : " + e,
+				 * "Null pointer Exception Raised",
+				 * "Kindly Check if the parameters are blank or not");
+				 */
+				System.out.println("Kindly Check if the parameters are blank or not :" + e);
 			} catch (Exception e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
-		}
-		catch(FileNotFoundException e) {
-				System.out.println("Not Able to Load File, Check Path. Cause : "+e);
-				try {
-					/*HTMLReport.updateErrorMessageintoHTMLReport("Cause : " + e,  	"File Not Found Exception Raised",
-							"Kindly Check if the File path is correct or not");*/
-					
-					System.out.println("Cause : " + e + 	"File Not Found Exception Raised, Kindly Check if the File path is correct or not");
-				} catch (Exception e1) {
-					// TODO Auto-generated catch block
-					
-					e1.printStackTrace();
-				}
-			}
-		catch(IOException e) {
-			System.out.println("IOException, Check Path. Cause : "+e);
-		}
-		catch(Exception e) {
-			System.out.println("Exception raised, Check Path. Cause : "+e);
+		} catch (FileNotFoundException e) {
+			System.out.println("Not Able to Load File, Check Path. Cause : " + e);
 			try {
-				/*HTMLReport.updateErrorMessageintoHTMLReport("Cause : " + e,  	"Generic Exception Raised",
-						"Kindly Check LoadConfig method");*/
-				
+				/*
+				 * HTMLReport.updateErrorMessageintoHTMLReport("Cause : " + e,
+				 * "File Not Found Exception Raised",
+				 * "Kindly Check if the File path is correct or not");
+				 */
+
+				System.out.println("Cause : " + e
+						+ "File Not Found Exception Raised, Kindly Check if the File path is correct or not");
+			} catch (Exception e1) {
+				// TODO Auto-generated catch block
+
+				e1.printStackTrace();
+			}
+		} catch (IOException e) {
+			System.out.println("IOException, Check Path. Cause : " + e);
+		} catch (Exception e) {
+			System.out.println("Exception raised, Check Path. Cause : " + e);
+			try {
+				/*
+				 * HTMLReport.updateErrorMessageintoHTMLReport("Cause : " + e,
+				 * "Generic Exception Raised", "Kindly Check LoadConfig method");
+				 */
+
 				System.out.println("Kindly Check LoadConfig method");
 			} catch (Exception e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
-			
-		}
-		
-		
-	}
-	
-	
 
-	
+		}
+
+	}
+
 	public static void reLoadingPage(WebDriver driver) throws Exception {
 		driver.navigate().refresh();
 		driver.navigate().refresh();
@@ -142,48 +147,34 @@ public class Library {
 			WebElement element1 = driver.findElement(By.xpath(xpath));
 
 			if (element1.isDisplayed() == true) {
-				//System.out.println("Element Present");
+				// System.out.println("Element Present");
 
 			}
 			return true;
 		} catch (Exception e) {
-			//System.out.println("Exception occured Element Not found occured"+e);
+			// System.out.println("Exception occured Element Not found occured"+e);
 			return false;
 
 		}
 
 	}
-	
-	
+
 	public static boolean Ispresent(WebDriver driver, WebElement ele) {
 		try {
 
-			
-
 			if (ele.isDisplayed() == true) {
-				//System.out.println("Element Present");
+				// System.out.println("Element Present");
 
 			}
 			return true;
 		} catch (Exception e) {
-			//System.out.println("Exception occured Element Not found occured"+e);
+			// System.out.println("Exception occured Element Not found occured"+e);
 			return false;
 
 		}
 
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 	public static String GetAnyZoneCurrentDate(String Timezone, String DateFormat) {
 		String CurrentDate;
 		SimpleDateFormat format = new SimpleDateFormat(DateFormat);
@@ -191,27 +182,27 @@ public class Library {
 		CurrentDate = format.format(new Date());
 		return CurrentDate;
 	}
-	
+
 	/**
-	 * This Method determines if the string is numeric or not even if it is of decimal
+	 * This Method determines if the string is numeric or not even if it is of
+	 * decimal
 	 * 
 	 * @param strNum
 	 *            : String Value that has to be determined
 	 */
 
 	public static boolean isNumeric(String strNum) {
-	    if (strNum == null) {
-	        return false;
-	    }
-	    try {
-	        double d = Double.parseDouble(strNum);
-	    } catch (NumberFormatException nfe) {
-	        return false;
-	    }
-	    return true;
+		if (strNum == null) {
+			return false;
+		}
+		try {
+			double d = Double.parseDouble(strNum);
+		} catch (NumberFormatException nfe) {
+			return false;
+		}
+		return true;
 	}
-	
-	
+
 	/**
 	 * This Method Copy the file from source to destination folder
 	 * 
@@ -241,8 +232,8 @@ public class Library {
 			}
 
 		} catch (Exception e) {
-			System.out.println("File Deletion Failed..."+e);
-			
+			System.out.println("File Deletion Failed..." + e);
+
 		}
 	}
 
@@ -270,40 +261,39 @@ public class Library {
 		return mydate;
 	}
 
-	//Change any date format to desired pattern
-	
+	// Change any date format to desired pattern
+
 	public static String getCustomisedExistDate(String Date, String CurrDateFormat, String ReqDateFormat) {
-		
+
 		String reqDAte = "";
 		try {
 			if (Date == null) {
 				System.out.println("Date is NULL Check SQL Query used");
-				
-			}
-		
-		SimpleDateFormat dt = new SimpleDateFormat(CurrDateFormat);
-		Date date = dt.parse(Date);
 
-		SimpleDateFormat dt1 = new SimpleDateFormat(ReqDateFormat);
-		reqDAte = dt1.format(date);
-		System.out.println(reqDAte);
-		
-		}
-		catch(ParseException p) {
-			System.out.println("Parse Exception raised at getCustomisedExistDate..."+ p);
-		}
-		catch (Exception e) {
-			System.out.println("Generic Exception raised at getCustomisedExistDate..."+e);
+			}
+
+			SimpleDateFormat dt = new SimpleDateFormat(CurrDateFormat);
+			Date date = dt.parse(Date);
+
+			SimpleDateFormat dt1 = new SimpleDateFormat(ReqDateFormat);
+			reqDAte = dt1.format(date);
+			System.out.println(reqDAte);
+
+		} catch (ParseException p) {
+			System.out.println("Parse Exception raised at getCustomisedExistDate..." + p);
+		} catch (Exception e) {
+			System.out.println("Generic Exception raised at getCustomisedExistDate..." + e);
 			Assert.fail();
 		}
-		
+
 		return reqDAte;
 	}
 
 	public static List<String> getListRunCmdOnLinux(String command, String host, String user, String password) {
-		/*String host = Library.getVal("host");
-		String user = Library.getVal("user");
-		String password = Library.getVal("password");*/
+		/*
+		 * String host = Library.getVal("host"); String user = Library.getVal("user");
+		 * String password = Library.getVal("password");
+		 */
 		List<String> lineList = new ArrayList<String>();
 		JSch jsch = new JSch();
 		com.jcraft.jsch.Session session;
@@ -326,9 +316,9 @@ public class Library {
 			BufferedReader reader = new BufferedReader(new InputStreamReader(in));
 			String line;
 			int index = 0;
-			
+
 			while ((line = reader.readLine()) != null) {
-				//System.out.println(++index + " : " + line);
+				// System.out.println(++index + " : " + line);
 				lineList.add(line);
 			}
 
@@ -338,12 +328,11 @@ public class Library {
 			channel.disconnect();
 			session.disconnect();
 		} catch (Exception e) {
-			System.out.println("Generic Exception raised at getListRunCmdOnLinux method"+e);
-			//e.printStackTrace();
+			System.out.println("Generic Exception raised at getListRunCmdOnLinux method" + e);
+			// e.printStackTrace();
 		}
 		return lineList;
 	}
-
 
 	public static BigDecimal truncateDecimal(double value, int numberofDecimals) {
 		if (value > 0) {
@@ -352,8 +341,6 @@ public class Library {
 			return new BigDecimal(String.valueOf(value)).setScale(numberofDecimals, BigDecimal.ROUND_CEILING);
 		}
 	}
-
-
 
 	/**
 	 * 
@@ -374,7 +361,6 @@ public class Library {
 			e1.printStackTrace();
 		}
 	}
-
 
 	/**
 	 * 
@@ -400,8 +386,9 @@ public class Library {
 			session.setConfig("StrictHostKeyChecking", "no");
 			session.setConfig("PreferredAuthentications", "publickey,keyboard-interactive,password");
 			session.connect();
-			System.out.println("Connected to "+host);
-			//HTMLReport.updateDetailsHTMLReport("Connected to Host","Connected to"+host+ "Status " +session.isConnected());
+			System.out.println("Connected to " + host);
+			// HTMLReport.updateDetailsHTMLReport("Connected to Host","Connected to"+host+
+			// "Status " +session.isConnected());
 
 			Channel channel = session.openChannel("exec");
 			((ChannelExec) channel).setCommand(command);
@@ -413,40 +400,43 @@ public class Library {
 
 			BufferedReader reader = new BufferedReader(new InputStreamReader(in));
 			String line;
-			List<String> consoleMsgList= new ArrayList<String>();
+			List<String> consoleMsgList = new ArrayList<String>();
 			int index = 0;
 			while ((line = reader.readLine()) != null) {
 				System.out.println(++index + " : " + line);
 				consoleMsgList.add(line);
-				
-			}
-			
-			boolean flag = false;
-			for(String Msgline : consoleMsgList) {
 
-				if (Msgline.contains("Spark Job Successfully completed"))
-				{
-					 System.out.println("Spark Job Ran Successfully"); 
-					 //HTMLReport.updateDetailsHTMLReport("Spark Job Status","Spark Job has been SuccessFully executed");
-					 flag = true;
+			}
+
+			boolean flag = false;
+			for (String Msgline : consoleMsgList) {
+
+				if (Msgline.contains("Spark Job Successfully completed")) {
+					System.out.println("Spark Job Ran Successfully");
+					// HTMLReport.updateDetailsHTMLReport("Spark Job Status","Spark Job has been
+					// SuccessFully executed");
+					flag = true;
 				}
 			}
-			
-			  if(flag == false) {
-						  
-			System.out.println("Spark Job failed"); 
-			// HTMLReport.updateErrorMessageintoHTMLReport("Spark Job has been failed Please check logs"); 
-			 Assert.assertTrue(flag == false,"Spark Job failed");
-			 }
+
+			if (flag == false) {
+
+				System.out.println("Spark Job failed");
+				// HTMLReport.updateErrorMessageintoHTMLReport("Spark Job has been failed Please
+				// check logs");
+				Assert.assertTrue(flag == false, "Spark Job failed");
+			}
 
 			channel.disconnect();
 			session.disconnect();
 		} catch (Exception e) {
 			try {
-				
-				System.out.println("Generic Exception raised at run_SparkJobOnLinux"+e);
-				/*HTMLReport.updateErrorMessageintoHTMLReport(e.getMessage(), "Run Spark Job",
-						"Run Spark Job to Get Data in Tables has failed");*/
+
+				System.out.println("Generic Exception raised at run_SparkJobOnLinux" + e);
+				/*
+				 * HTMLReport.updateErrorMessageintoHTMLReport(e.getMessage(), "Run Spark Job",
+				 * "Run Spark Job to Get Data in Tables has failed");
+				 */
 			} catch (Exception e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -454,10 +444,6 @@ public class Library {
 			e.printStackTrace();
 		}
 	}
-	
-	
-	
-	
 
 	public static void getExcel_OnLinux(String host, String user, String password, String readFilePath,
 			String localPath) {
@@ -470,8 +456,8 @@ public class Library {
 			session.setConfig("StrictHostKeyChecking", "no");
 			session.setConfig("PreferredAuthentications", "publickey,keyboard-interactive,password");
 			session.connect();
-			System.out.println("Connected to Host "+host);
-			//HTMLReport.updateDetailsHTMLReport("Connected to Host "+host);
+			System.out.println("Connected to Host " + host);
+			// HTMLReport.updateDetailsHTMLReport("Connected to Host "+host);
 			Channel channel = session.openChannel("sftp");
 			channel.connect();
 
@@ -483,10 +469,12 @@ public class Library {
 			session.disconnect();
 		} catch (Exception e) {
 			try {
-				/*HTMLReport.updateErrorMessageintoHTMLReport(e.getMessage(), "Get Excel from Linux Server",
-						"Not able to fetch Excel File.");*/
+				/*
+				 * HTMLReport.updateErrorMessageintoHTMLReport(e.getMessage(),
+				 * "Get Excel from Linux Server", "Not able to fetch Excel File.");
+				 */
 				System.out.println(e.getMessage() + "Get Excel from Linux Server, Not able to fetch Excel File.");
-				
+
 			} catch (Exception e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -496,12 +484,11 @@ public class Library {
 	}
 
 	public static void WaitForPageLoad(WebDriver driver, int timeOut) {
-		System.out.println("Wait for Page Load Started. Duration :"+timeOut);
-		new WebDriverWait(driver, timeOut).until(
-				webDriver -> ((JavascriptExecutor) webDriver).executeScript("return document.readyState").equals("complete"));	
+		System.out.println("Wait for Page Load Started. Duration :" + timeOut);
+		new WebDriverWait(driver, timeOut).until(webDriver -> ((JavascriptExecutor) webDriver)
+				.executeScript("return document.readyState").equals("complete"));
 	}
-	
-	
+
 	public static void waitForGivenTimeInSeconds(int wTmeInSeconds) {
 		try {
 			TimeUnit.SECONDS.sleep(wTmeInSeconds);
@@ -518,26 +505,29 @@ public class Library {
 
 	public static void waitUntilelementToBeClickable(WebDriver driver, long ITO, WebElement WebElement) {
 		try {
-		WebDriverWait wait = new WebDriverWait(driver, ITO);
-		wait.until(ExpectedConditions.elementToBeClickable(WebElement));
-		}
-		catch(Exception e) {
-			
-			if(e.getMessage().contains("Expected condition failed: waiting for element to be clickable")) {
-				
+			WebDriverWait wait = new WebDriverWait(driver, ITO);
+			wait.until(ExpectedConditions.elementToBeClickable(WebElement));
+		} catch (Exception e) {
+
+			if (e.getMessage().contains("Expected condition failed: waiting for element to be clickable")) {
+
 				try {
-					/*HTMLReport.updateErrorMessageintoHTMLReport(e.getMessage(), "Performance Issues",
-							"The reason might be due to performance issue/network issue, the loading is not completed ");*/
-					System.out.println(e.getMessage()+ "Performance Issues, the reason might be due to performance issue/network issue, the loading is not completed ");
-					
+					/*
+					 * HTMLReport.updateErrorMessageintoHTMLReport(e.getMessage(),
+					 * "Performance Issues",
+					 * "The reason might be due to performance issue/network issue, the loading is not completed "
+					 * );
+					 */
+					System.out.println(e.getMessage()
+							+ "Performance Issues, the reason might be due to performance issue/network issue, the loading is not completed ");
+
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-				
-				
+
 			}
-			
+
 		}
 	}
 
@@ -560,10 +550,10 @@ public class Library {
 
 		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
 	}
-	
+
 	public static void scrolldown(WebDriver driver, int ScrollBy) {
 		JavascriptExecutor js = ((JavascriptExecutor) driver);
-		js.executeScript("window.scrollBy(0,"+ScrollBy+")");
+		js.executeScript("window.scrollBy(0," + ScrollBy + ")");
 		Library.waitForGivenTimeInSeconds(2);
 
 	}
@@ -575,9 +565,6 @@ public class Library {
 		Library.waitForGivenTimeInSeconds(2);
 
 	}
-	
-	
-	
 
 	public static String getTextValue(WebElement element) {
 		String value = "";
@@ -597,16 +584,22 @@ public class Library {
 	 */
 
 	final static SftpProgressMonitor monitor = new SftpProgressMonitor() {
-		public void init(final int op, final String source, final String target,final long max){System.out.println("sftp start uploading file from:"+source+" to:"+target);}
-
-	public boolean count(final long count){
-		
-		//log.debug("sftp sending bytes: "+count);
-		System.out.println("sftp sending bytes: "+count);
-		return true;
+		public void init(final int op, final String source, final String target, final long max) {
+			System.out.println("sftp start uploading file from:" + source + " to:" + target);
 		}
 
-	public void end(){System.out.println("sftp uploading is done.");System.out.println("sftp uploading is done.");}};
+		public boolean count(final long count) {
+
+			// log.debug("sftp sending bytes: "+count);
+			System.out.println("sftp sending bytes: " + count);
+			return true;
+		}
+
+		public void end() {
+			System.out.println("sftp uploading is done.");
+			System.out.println("sftp uploading is done.");
+		}
+	};
 
 	/*
 	 * Will copy file from one server to another Below method will upload the data
@@ -621,36 +614,41 @@ public class Library {
 		System.out.println(excelPath);
 
 		try {
-			//HTMLReport.updateDetailsHTMLReport("Connect to Server","Initiate getting file from Linux Server...");
+			// HTMLReport.updateDetailsHTMLReport("Connect to Server","Initiate getting file
+			// from Linux Server...");
 			System.out.println("Connect to Server, Initiate getting file from Linux Server...");
 			JSch jsch = new JSch();
 
 			System.out.println("Trying to connect.....");
-			//HTMLReport.updateDetailsHTMLReport("Connect to Server","Trying to connect.....");
+			// HTMLReport.updateDetailsHTMLReport("Connect to Server","Trying to
+			// connect.....");
 			session = jsch.getSession(username, hostname, 22);
 			session.setConfig("StrictHostKeyChecking", "no");
 			session.setPassword(password);
 			session.connect();
 			System.out.println("is server connected? " + session.isConnected());
-			//HTMLReport.updateDetailsHTMLReport("is server connected? " , session.isConnected());
+			// HTMLReport.updateDetailsHTMLReport("is server connected? " ,
+			// session.isConnected());
 			Channel channel = session.openChannel("sftp");
 			channel.connect();
 			sftpChannel = (ChannelSftp) channel;
 
 			System.out.println(sftpChannel.getHome());
 		} catch (SftpException | JSchException e) {
-			
-			System.out.println("Exception is raised in putFile method :"+e);
-			
+
+			System.out.println("Exception is raised in putFile method :" + e);
+
 			try {
-				/*HTMLReport.updateErrorMessageintoHTMLReport("Cause : " + e,  	"Exception Raised",
-						"Kindly Check putFile method ");*/
+				/*
+				 * HTMLReport.updateErrorMessageintoHTMLReport("Cause : " + e,
+				 * "Exception Raised", "Kindly Check putFile method ");
+				 */
 				System.out.println("Exception Raised, Kindly Check putFile method ");
 			} catch (Exception e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
-			
+
 			e.printStackTrace();
 		}
 		try {
@@ -658,17 +656,16 @@ public class Library {
 		} catch (SftpException e) {
 			System.out.println("SftpException: " + copyFrom);
 			e.printStackTrace();
-			}
-		catch(Exception e1) {			
-					System.out.println("File status : file was not found: " + copyFrom);
-		} 
-		finally {
-			
-				sftpChannel.exit();
-				session.disconnect();
-				System.out.println("File Load"+" Finished getting file from Linux Server...");
-				//HTMLReport.updateDetailsHTMLReport("File Load"," Finished getting file from Linux Server...");
-			
+		} catch (Exception e1) {
+			System.out.println("File status : file was not found: " + copyFrom);
+		} finally {
+
+			sftpChannel.exit();
+			session.disconnect();
+			System.out.println("File Load" + " Finished getting file from Linux Server...");
+			// HTMLReport.updateDetailsHTMLReport("File Load"," Finished getting file from
+			// Linux Server...");
+
 		}
 	}
 
@@ -677,57 +674,60 @@ public class Library {
 	 * from Linux Server to Windows using get()
 	 */
 
-	public static void getFile(String hostname, String username, String password, String copyFrom, String copyTo) throws Exception {
+	public static void getFile(String hostname, String username, String password, String copyFrom, String copyTo)
+			throws Exception {
 		System.out.println("Initiate getting file from Linux Server...");
 		Session session = null;
 		ChannelSftp sftpChannel = null;
 		String excelPath = copyTo + Library.getVal("ExcelName");
 		System.out.println(excelPath);
-		System.out.println("Excel Path"+excelPath);
+		System.out.println("Excel Path" + excelPath);
 		try {
-			//HTMLReport.updateDetailsHTMLReport("Get File from Server","Initiate getting file from Linux Server...");
+			// HTMLReport.updateDetailsHTMLReport("Get File from Server","Initiate getting
+			// file from Linux Server...");
 
 			System.out.println("Get File from Server, Initiate getting file from Linux Server...");
 			JSch jsch = new JSch();
 
 			System.out.println("Trying to connect.....");
-			//HTMLReport.updateDetailsHTMLReport("Trying to connect.....");
+			// HTMLReport.updateDetailsHTMLReport("Trying to connect.....");
 			session = jsch.getSession(username, hostname, 22);
 			session.setConfig("StrictHostKeyChecking", "no");
 			session.setPassword(password);
 			session.connect();
 			System.out.println("is server connected? " + session.isConnected());
-			//HTMLReport.updateDetailsHTMLReport("Connection Status","is server connected? " + session.isConnected());
+			// HTMLReport.updateDetailsHTMLReport("Connection Status","is server connected?
+			// " + session.isConnected());
 			Channel channel = session.openChannel("sftp");
 			channel.connect();
 			sftpChannel = (ChannelSftp) channel;
 
 			System.out.println(sftpChannel.getHome());
 		} catch (SftpException e) {
-			System.out.println("Exception raised at getFile"+e);
-			
+			System.out.println("Exception raised at getFile" + e);
+
 		}
 		try {
 			sftpChannel.get(copyFrom, excelPath, monitor, ChannelSftp.OVERWRITE);
 		} catch (SftpException e) {
-			//System.out.println("SftpException: " + copyFrom);
-			System.out.println("SftpException is raised in getFile method :"+e);
+			// System.out.println("SftpException: " + copyFrom);
+			System.out.println("SftpException is raised in getFile method :" + e);
 
 			Assert.fail();
-			
+
 		} finally {
-			
-				sftpChannel.exit();
-				session.disconnect();
-				System.out.println("Finished getting file from Linux Server...");
-				System.out.println("Session disconnected, Finished getting file from Linux Server...");
-			
+
+			sftpChannel.exit();
+			session.disconnect();
+			System.out.println("Finished getting file from Linux Server...");
+			System.out.println("Session disconnected, Finished getting file from Linux Server...");
+
 		}
 
 	}
 
 	public static File createShellFile(String fileName) {
-		File file = new File(fileName+".sh");
+		File file = new File(fileName + ".sh");
 		if (file.exists()) {
 			return file;
 		}
@@ -747,27 +747,23 @@ public class Library {
 		return null;
 	}
 
-	
-	public List<String> getlistfromdriver(List<WebElement> list){
+	public List<String> getlistfromdriver(List<WebElement> list) {
 
 		List<String> newlist = new ArrayList<String>();
 		int count = 0;
-			if (list.size() > 0) {
+		if (list.size() > 0) {
 
-				for ( count = 0; count < list.size(); count++) {
-					if ((list.get(count).getText() != null) && !(list.get(count).getText().isEmpty())) {
-						newlist.add(list.get(count).getText());
-					}
+			for (count = 0; count < list.size(); count++) {
+				if ((list.get(count).getText() != null) && !(list.get(count).getText().isEmpty())) {
+					newlist.add(list.get(count).getText());
 				}
-				
 			}
-		
+
+		}
+
 		return newlist;
 	}
-	
-	
-	
-	
+
 	public static List<String> WebEleToStringList(List<WebElement> WebElelist) {
 
 		List<String> valuelist = new ArrayList<String>();
@@ -779,9 +775,7 @@ public class Library {
 		return valuelist;
 
 	}
-	
-	
-	
+
 	public static void zoomInZoomOut(WebDriver driver, int value) {
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		System.out.println(value);
@@ -796,9 +790,7 @@ public class Library {
 			e.printStackTrace();
 		}
 	}
-	
-	
-	
+
 	public static boolean matchList(List<?> list1, List<?> list2) {
 
 		boolean flag = true;
@@ -806,24 +798,28 @@ public class Library {
 			if (list1.size() == list2.size()) {
 				System.out.println("Size is Same");
 
-				//HTMLReport.updateDetailsHTMLReport("List Size", " Both list have same length");
+				// HTMLReport.updateDetailsHTMLReport("List Size", " Both list have same
+				// length");
 
-					if (list1.equals(list2)) {
-						System.out.println("List Compare,  Both list are equal");
-						//HTMLReport.updateErrorMessageintoHTMLReport("List Compare", " Both list are equal");
-						flag = true;
-					} else {
-						System.out.println("List Compare:  Both list are not equal List1 :"+list1+" \n list2: "+list2);
-						//HTMLReport.updateDetailsHTMLReport("List Compare", " Both list are not equal List1 :"+list1+" \n list2: "+list2);
-						flag = false;
-					}
+				if (list1.equals(list2)) {
+					System.out.println("List Compare,  Both list are equal");
+					// HTMLReport.updateErrorMessageintoHTMLReport("List Compare", " Both list are
+					// equal");
+					flag = true;
+				} else {
+					System.out
+							.println("List Compare:  Both list are not equal List1 :" + list1 + " \n list2: " + list2);
+					// HTMLReport.updateDetailsHTMLReport("List Compare", " Both list are not equal
+					// List1 :"+list1+" \n list2: "+list2);
+					flag = false;
+				}
 
 			} else {
-				System.out.println("List Size:  Both list have different length.\n List1 :"+list1.size()+ "\n List2:"+list2.size());
+				System.out.println("List Size:  Both list have different length.\n List1 :" + list1.size() + "\n List2:"
+						+ list2.size());
 				flag = false;
 			}
-		} 
-		catch(Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return flag;
@@ -832,48 +828,46 @@ public class Library {
 	public static boolean isNullOrEmptyMap(Map<?, ?> map) {
 		return (map == null || map.isEmpty());
 	}
-	
+
 	/**
-	 * @author Anurag_Deb
-	 * This method will check the difference of Key's Value in two maps
+	 * @author Anurag_Deb This method will check the difference of Key's Value in
+	 *         two maps
 	 * @param map1
 	 * @param map2
 	 * @return result in boolean format
-	 * @throws Exception 
+	 * @throws Exception
 	 */
-	
 
 	public static boolean checkDiffMap(Map<String, ?> map1, Map<String, ?> map2) throws Exception {
 
 		if (isNullOrEmptyMap(map1) || isNullOrEmptyMap(map2)) {
-			System.out.println("One of the Map is Empty. Map1.size :"+map1.size()+" Map2.size :"+map2.size());
-			System.out.println("List Compare : One of the list is empty.  Map1.size :"+map1.size()+" Map2.size :"+map2.size());
-	
+			System.out.println("One of the Map is Empty. Map1.size :" + map1.size() + " Map2.size :" + map2.size());
+			System.out.println("List Compare : One of the list is empty.  Map1.size :" + map1.size() + " Map2.size :"
+					+ map2.size());
+
 			return false;
 		} else {
-			
+
 			boolean SizeCheck = map1.size() == map2.size();
-			System.out.println("Verify Size of Maps. Status : "+SizeCheck + "   Map1 Size : "+map1.size()+ "   Map2 Size : "+map2.size());
-			System.out.println("List Compare:  Verify Size of Maps. Status : "+SizeCheck + "Map1 Size : "+map1.size()+ "Map2 Size : "+map2.size());
-			
-			
-			
+			System.out.println("Verify Size of Maps. Status : " + SizeCheck + "   Map1 Size : " + map1.size()
+					+ "   Map2 Size : " + map2.size());
+			System.out.println("List Compare:  Verify Size of Maps. Status : " + SizeCheck + "Map1 Size : "
+					+ map1.size() + "Map2 Size : " + map2.size());
+
 			for (Map.Entry<String, ?> me : map2.entrySet()) {
 				String key = me.getKey();
 				if (map1.containsKey(key)) {
 
 					if (map2.get(key).equals(map1.get(key))) {
 						System.out.println("Map1 Value :" + map1.get(key) + " =  Map2 Value :" + map2.get(key)
-						+ " for Key :" + key);
-						
-						
+								+ " for Key :" + key);
 
 					} else {
 						System.out.println("Map1 Value :" + map1.get(key) + " !=  Map2 Value :" + map2.get(key)
 								+ " for Key :" + key);
-						System.out.println("List Compare: Map1 Value :" + map1.get(key) + " !=  Map2 Value :" + map2.get(key) + 
-								 " for Key :" + key);
-						
+						System.out.println("List Compare: Map1 Value :" + map1.get(key) + " !=  Map2 Value :"
+								+ map2.get(key) + " for Key :" + key);
+
 						return false;
 					}
 				}
@@ -886,86 +880,78 @@ public class Library {
 	public static void listALLFolders(String path) {
 		try (Stream<Path> walk = Files.walk(Paths.get(path))) {
 
-			List<String> result = walk.filter(Files::isDirectory)
-					.map(x -> x.toString()).collect(Collectors.toList());
+			List<String> result = walk.filter(Files::isDirectory).map(x -> x.toString()).collect(Collectors.toList());
 
 			result.forEach(System.out::println);
 
 		} catch (IOException e) {
-			System.out.println("IOException raised at listALLFolders"+e);
+			System.out.println("IOException raised at listALLFolders" + e);
 		}
 	}
-	
-	
+
 	public static List<String> listAllEndsWith(String EndsWithPattern, String FolderPath) {
 
-	
 		List<String> result = null;
-		
+
 		try (Stream<Path> walk = Files.walk(Paths.get(FolderPath))) {
 
-			 result = walk.map(x -> x.toString())
-					.filter(f -> f.endsWith(EndsWithPattern)).collect(Collectors.toList());
+			result = walk.map(x -> x.toString()).filter(f -> f.endsWith(EndsWithPattern)).collect(Collectors.toList());
 
 			result.forEach(System.out::println);
 
 		} catch (IOException e) {
-			System.out.println("IO Exception raised at listAllEndsWith method"+e);
-		
+			System.out.println("IO Exception raised at listAllEndsWith method" + e);
+
 		}
-		
-		catch(Exception e) {
-			System.out.println("Exception raised at listAllEndsWith method"+e);
+
+		catch (Exception e) {
+			System.out.println("Exception raised at listAllEndsWith method" + e);
 		}
-		
-		
+
 		return result;
 	}
 
 	public static boolean CompareMultiDimList(List<?> list1, List<?> list2) {
-		
+
 		boolean flag = true;
-			  if (list1 == null) {
-				 System.out.println("list 1 is null");
-				  return false;
-			  }
-			  if (list2 == null) {
-				 System.out.println("list 2 is null");
-				  return false;
-			  }
-			 
-			 if (list1.size() != list2.size()) {
-				 System.out.println("List Size is not same. List 1 size :"+list1.size() + "!="+" List 2 Size :"+list2.size());
-				  return false;
-			  }
-			 else {
-			 
-					  for (int i = 0; i < list2.size(); i++) {
-						  	if (list1.get(i).equals(list2.get(i))) {
-						  		System.out.println(list1.get(i)+ " = "+list2.get(i) );			
-						  	}
-						  	else {
-						  		System.out.println(list1.get(i)+ " != "+list2.get(i) );
-						  		flag = false;
-						  		break;
-						  				
-						  	} 		
-					 }
-					if (flag == false) {
-						
-						return false;
-						
-					}
-			 }
-			return true;		  
-	}		  
-	
-	 public static boolean isNullOrEmptyString(String str) {
-	        if(str != null && !str.isEmpty())
-	            return false;
-	        return true;
-	    }
-	
-	
-	
+		if (list1 == null) {
+			System.out.println("list 1 is null");
+			return false;
+		}
+		if (list2 == null) {
+			System.out.println("list 2 is null");
+			return false;
+		}
+
+		if (list1.size() != list2.size()) {
+			System.out.println(
+					"List Size is not same. List 1 size :" + list1.size() + "!=" + " List 2 Size :" + list2.size());
+			return false;
+		} else {
+
+			for (int i = 0; i < list2.size(); i++) {
+				if (list1.get(i).equals(list2.get(i))) {
+					System.out.println(list1.get(i) + " = " + list2.get(i));
+				} else {
+					System.out.println(list1.get(i) + " != " + list2.get(i));
+					flag = false;
+					break;
+
+				}
+			}
+			if (flag == false) {
+
+				return false;
+
+			}
+		}
+		return true;
+	}
+
+	public static boolean isNullOrEmptyString(String str) {
+		if (str != null && !str.isEmpty())
+			return false;
+		return true;
+	}
+
 }

@@ -1,5 +1,5 @@
 
-package dbUtils;
+package com.anuragdeb.dbUtils;
 
 import java.net.SocketTimeoutException;
 import java.sql.Connection;
@@ -18,7 +18,7 @@ import java.util.List;
 import org.junit.Assert;*/
 import org.postgresql.util.PSQLException;
 
-import helper.Library;
+import com.anuragdeb.helper.Library;
 
 
 
