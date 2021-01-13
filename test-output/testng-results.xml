@@ -1,25 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results skipped="0" failed="0" ignored="0" total="1" passed="1">
+<testng-results skipped="0" failed="0" ignored="0" total="2" passed="2">
   <reporter-output>
   </reporter-output>
-  <suite name="Suite" duration-ms="23857" started-at="2021-01-13T12:25:01Z" finished-at="2021-01-13T12:25:25Z">
+  <suite name="Suite" duration-ms="49148" started-at="2021-01-13T12:26:43Z" finished-at="2021-01-13T12:27:32Z">
     <groups>
     </groups>
-    <test name="Test" duration-ms="23857" started-at="2021-01-13T12:25:01Z" finished-at="2021-01-13T12:25:25Z">
+    <test name="Test" duration-ms="49148" started-at="2021-01-13T12:26:43Z" finished-at="2021-01-13T12:27:32Z">
       <class name="com.testcases.LoginPageTest">
-        <test-method status="PASS" signature="beforeTest()[pri:0, instance:com.testcases.LoginPageTest@3c0ecd4b]" name="beforeTest" is-config="true" duration-ms="13616" started-at="2021-01-13T12:25:01Z" finished-at="2021-01-13T12:25:15Z">
+        <test-method status="PASS" signature="beforeTest()[pri:0, instance:com.testcases.LoginPageTest@14bf9759]" name="beforeTest" is-config="true" duration-ms="13580" started-at="2021-01-13T12:26:43Z" finished-at="2021-01-13T12:26:57Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- beforeTest -->
-        <test-method status="PASS" signature="login()[pri:0, instance:com.testcases.LoginPageTest@3c0ecd4b]" name="login" duration-ms="6754" started-at="2021-01-13T12:25:15Z" finished-at="2021-01-13T12:25:22Z">
+        <test-method status="PASS" signature="login()[pri:0, instance:com.testcases.LoginPageTest@14bf9759]" name="login" duration-ms="3927" started-at="2021-01-13T12:26:57Z" finished-at="2021-01-13T12:27:01Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- login -->
-        <test-method status="PASS" signature="afterTest()[pri:0, instance:com.testcases.LoginPageTest@3c0ecd4b]" name="afterTest" is-config="true" duration-ms="3454" started-at="2021-01-13T12:25:22Z" finished-at="2021-01-13T12:25:25Z">
+        <test-method status="PASS" signature="afterTest()[pri:0, instance:com.testcases.LoginPageTest@14bf9759]" name="afterTest" is-config="true" duration-ms="6546" started-at="2021-01-13T12:27:01Z" finished-at="2021-01-13T12:27:07Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- afterTest -->
       </class> <!-- com.testcases.LoginPageTest -->
+      <class name="com.testcases.HomePageTest">
+        <test-method status="PASS" signature="beforeTest()[pri:0, instance:com.testcases.HomePageTest@5f341870]" name="beforeTest" is-config="true" duration-ms="9977" started-at="2021-01-13T12:27:07Z" finished-at="2021-01-13T12:27:17Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeTest -->
+        <test-method status="PASS" signature="login()[pri:0, instance:com.testcases.HomePageTest@5f341870]" name="login" duration-ms="10067" started-at="2021-01-13T12:27:17Z" finished-at="2021-01-13T12:27:27Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- login -->
+        <test-method status="PASS" signature="afterTest()[pri:0, instance:com.testcases.HomePageTest@5f341870]" name="afterTest" is-config="true" duration-ms="4938" started-at="2021-01-13T12:27:27Z" finished-at="2021-01-13T12:27:32Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterTest -->
+      </class> <!-- com.testcases.HomePageTest -->
     </test> <!-- Test -->
   </suite> <!-- Suite -->
 </testng-results>
