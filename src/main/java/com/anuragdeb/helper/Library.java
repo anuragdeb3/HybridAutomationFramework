@@ -24,8 +24,11 @@ import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -48,10 +51,6 @@ public class Library {
 
 	public Library(WebDriver driver) {
 
-		// Please set the values for the application name, uri and segment name here.
-		// super.name = "";
-		// super.uri = "";
-		// super.segmentName = "";
 		Library.driver = driver;
 	}
 
@@ -85,29 +84,21 @@ public class Library {
 		} catch (NullPointerException e) {
 			System.out.println("Can't load null, Check Path. Cause : " + e);
 			try {
-				/*
-				 * HTMLReport.updateErrorMessageintoHTMLReport("Cause : " + e,
-				 * "Null pointer Exception Raised",
-				 * "Kindly Check if the parameters are blank or not");
-				 */
+				
 				System.out.println("Kindly Check if the parameters are blank or not :" + e);
 			} catch (Exception e1) {
-				// TODO Auto-generated catch block
+				
 				e1.printStackTrace();
 			}
 		} catch (FileNotFoundException e) {
 			System.out.println("Not Able to Load File, Check Path. Cause : " + e);
 			try {
-				/*
-				 * HTMLReport.updateErrorMessageintoHTMLReport("Cause : " + e,
-				 * "File Not Found Exception Raised",
-				 * "Kindly Check if the File path is correct or not");
-				 */
+				
 
 				System.out.println("Cause : " + e
 						+ "File Not Found Exception Raised, Kindly Check if the File path is correct or not");
 			} catch (Exception e1) {
-				// TODO Auto-generated catch block
+				
 
 				e1.printStackTrace();
 			}
@@ -116,14 +107,11 @@ public class Library {
 		} catch (Exception e) {
 			System.out.println("Exception raised, Check Path. Cause : " + e);
 			try {
-				/*
-				 * HTMLReport.updateErrorMessageintoHTMLReport("Cause : " + e,
-				 * "Generic Exception Raised", "Kindly Check LoadConfig method");
-				 */
+				
 
 				System.out.println("Kindly Check LoadConfig method");
 			} catch (Exception e1) {
-				// TODO Auto-generated catch block
+				
 				e1.printStackTrace();
 			}
 
@@ -137,12 +125,24 @@ public class Library {
 		driver.manage().timeouts().pageLoadTimeout(5000, TimeUnit.SECONDS);
 	}
 
-	public static boolean IsElementPresent(WebDriver driver, String xpath) {
+	public static boolean IsElementPresent(WebDriver driver, String locator, String locatorValue) {
 		try {
+			WebElement element = null ;
 
-			WebElement element1 = driver.findElement(By.xpath(xpath));
+			if(locator.equalsIgnoreCase("xpath")){
+					element = driver.findElement(By.xpath(locatorValue));
+					}
+			else if(locator.equalsIgnoreCase("id")){
+				element = driver.findElement(By.id(locatorValue));
+				}
+			else if(locator.equalsIgnoreCase("className")){
+				element = driver.findElement(By.className(locatorValue));
+				}
+			else if(locator.equalsIgnoreCase("tagName")){
+				element = driver.findElement(By.tagName(locatorValue));
+				}
 
-			if (element1.isDisplayed() == true) {
+			if (element.isDisplayed() == true) {
 				// System.out.println("Element Present");
 
 			}
@@ -353,7 +353,7 @@ public class Library {
 		try {
 			Thread.sleep(TimeInMiliSeconds);
 		} catch (InterruptedException e1) {
-			// TODO Auto-generated catch block
+			
 			e1.printStackTrace();
 		}
 	}
@@ -383,9 +383,7 @@ public class Library {
 			session.setConfig("PreferredAuthentications", "publickey,keyboard-interactive,password");
 			session.connect();
 			System.out.println("Connected to " + host);
-			// HTMLReport.updateDetailsHTMLReport("Connected to Host","Connected to"+host+
-			// "Status " +session.isConnected());
-
+		
 			Channel channel = session.openChannel("exec");
 			((ChannelExec) channel).setCommand(command);
 			channel.setInputStream(null);
@@ -409,8 +407,7 @@ public class Library {
 
 				if (Msgline.contains("Spark Job Successfully completed")) {
 					System.out.println("Spark Job Ran Successfully");
-					// HTMLReport.updateDetailsHTMLReport("Spark Job Status","Spark Job has been
-					// SuccessFully executed");
+					
 					flag = true;
 				}
 			}
@@ -418,8 +415,7 @@ public class Library {
 			if (flag == false) {
 
 				System.out.println("Spark Job failed");
-				// HTMLReport.updateErrorMessageintoHTMLReport("Spark Job has been failed Please
-				// check logs");
+				
 				Assert.assertTrue(flag == false, "Spark Job failed");
 			}
 
@@ -429,12 +425,9 @@ public class Library {
 			try {
 
 				System.out.println("Generic Exception raised at run_SparkJobOnLinux" + e);
-				/*
-				 * HTMLReport.updateErrorMessageintoHTMLReport(e.getMessage(), "Run Spark Job",
-				 * "Run Spark Job to Get Data in Tables has failed");
-				 */
+				
 			} catch (Exception e1) {
-				// TODO Auto-generated catch block
+				
 				e1.printStackTrace();
 			}
 			e.printStackTrace();
@@ -453,7 +446,7 @@ public class Library {
 			session.setConfig("PreferredAuthentications", "publickey,keyboard-interactive,password");
 			session.connect();
 			System.out.println("Connected to Host " + host);
-			// HTMLReport.updateDetailsHTMLReport("Connected to Host "+host);
+			
 			Channel channel = session.openChannel("sftp");
 			channel.connect();
 
@@ -465,14 +458,11 @@ public class Library {
 			session.disconnect();
 		} catch (Exception e) {
 			try {
-				/*
-				 * HTMLReport.updateErrorMessageintoHTMLReport(e.getMessage(),
-				 * "Get Excel from Linux Server", "Not able to fetch Excel File.");
-				 */
+				
 				System.out.println(e.getMessage() + "Get Excel from Linux Server, Not able to fetch Excel File.");
 
 			} catch (Exception e1) {
-				// TODO Auto-generated catch block
+				
 				e1.printStackTrace();
 			}
 			e.printStackTrace();
@@ -508,17 +498,12 @@ public class Library {
 			if (e.getMessage().contains("Expected condition failed: waiting for element to be clickable")) {
 
 				try {
-					/*
-					 * HTMLReport.updateErrorMessageintoHTMLReport(e.getMessage(),
-					 * "Performance Issues",
-					 * "The reason might be due to performance issue/network issue, the loading is not completed "
-					 * );
-					 */
+					
 					System.out.println(e.getMessage()
 							+ "Performance Issues, the reason might be due to performance issue/network issue, the loading is not completed ");
 
 				} catch (Exception e1) {
-					// TODO Auto-generated catch block
+					
 					e1.printStackTrace();
 				}
 
@@ -610,21 +595,20 @@ public class Library {
 		System.out.println(excelPath);
 
 		try {
-			// HTMLReport.updateDetailsHTMLReport("Connect to Server","Initiate getting file
+			
 			// from Linux Server...");
 			System.out.println("Connect to Server, Initiate getting file from Linux Server...");
 			JSch jsch = new JSch();
 
 			System.out.println("Trying to connect.....");
-			// HTMLReport.updateDetailsHTMLReport("Connect to Server","Trying to
+		
 			// connect.....");
 			session = jsch.getSession(username, hostname, 22);
 			session.setConfig("StrictHostKeyChecking", "no");
 			session.setPassword(password);
 			session.connect();
 			System.out.println("is server connected? " + session.isConnected());
-			// HTMLReport.updateDetailsHTMLReport("is server connected? " ,
-			// session.isConnected());
+			
 			Channel channel = session.openChannel("sftp");
 			channel.connect();
 			sftpChannel = (ChannelSftp) channel;
@@ -635,13 +619,10 @@ public class Library {
 			System.out.println("Exception is raised in putFile method :" + e);
 
 			try {
-				/*
-				 * HTMLReport.updateErrorMessageintoHTMLReport("Cause : " + e,
-				 * "Exception Raised", "Kindly Check putFile method ");
-				 */
+				
 				System.out.println("Exception Raised, Kindly Check putFile method ");
 			} catch (Exception e1) {
-				// TODO Auto-generated catch block
+				
 				e1.printStackTrace();
 			}
 
@@ -659,9 +640,7 @@ public class Library {
 			sftpChannel.exit();
 			session.disconnect();
 			System.out.println("File Load" + " Finished getting file from Linux Server...");
-			// HTMLReport.updateDetailsHTMLReport("File Load"," Finished getting file from
-			// Linux Server...");
-
+			
 		}
 	}
 
@@ -679,21 +658,19 @@ public class Library {
 		System.out.println(excelPath);
 		System.out.println("Excel Path" + excelPath);
 		try {
-			// HTMLReport.updateDetailsHTMLReport("Get File from Server","Initiate getting
-			// file from Linux Server...");
+			
 
 			System.out.println("Get File from Server, Initiate getting file from Linux Server...");
 			JSch jsch = new JSch();
 
 			System.out.println("Trying to connect.....");
-			// HTMLReport.updateDetailsHTMLReport("Trying to connect.....");
+		
 			session = jsch.getSession(username, hostname, 22);
 			session.setConfig("StrictHostKeyChecking", "no");
 			session.setPassword(password);
 			session.connect();
 			System.out.println("is server connected? " + session.isConnected());
-			// HTMLReport.updateDetailsHTMLReport("Connection Status","is server connected?
-			// " + session.isConnected());
+		
 			Channel channel = session.openChannel("sftp");
 			channel.connect();
 			sftpChannel = (ChannelSftp) channel;
@@ -794,19 +771,15 @@ public class Library {
 			if (list1.size() == list2.size()) {
 				System.out.println("Size is Same");
 
-				// HTMLReport.updateDetailsHTMLReport("List Size", " Both list have same
-				// length");
 
 				if (list1.equals(list2)) {
 					System.out.println("List Compare,  Both list are equal");
-					// HTMLReport.updateErrorMessageintoHTMLReport("List Compare", " Both list are
-					// equal");
+					
 					flag = true;
 				} else {
 					System.out
 							.println("List Compare:  Both list are not equal List1 :" + list1 + " \n list2: " + list2);
-					// HTMLReport.updateDetailsHTMLReport("List Compare", " Both list are not equal
-					// List1 :"+list1+" \n list2: "+list2);
+					
 					flag = false;
 				}
 
@@ -950,4 +923,21 @@ public class Library {
 		return true;
 	}
 
+	
+	public static void takeScreenShot() {
+		File scrnFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+		String screenShotFolder = System.getProperty("user.dir")+"/ScreenShots/";
+		
+		try {
+			FileUtils.copyFile(scrnFile,new File (screenShotFolder+"Screenshot_"+System.currentTimeMillis()+".png"));
+		} catch (IOException e) {
+			
+			System.out.println("Captured IOException at takeScreenShot method "+e);
+		}
+		
+	}
+	
+	
+	
+	
 }

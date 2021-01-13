@@ -1,6 +1,5 @@
 package com.pages;
 
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -30,9 +29,13 @@ public class LoginPage extends BaseFactory {
 	
 	
 	
-	public void NavigateSute() {
+	public void NavigateSite() {
 	 driver.get(Library.getVal("URL"));
 	
+	}
+	
+	public boolean buttonPresent() {
+		return Library.IsElementPresent(driver, "id","btnLogin");
 	}
 	
 	

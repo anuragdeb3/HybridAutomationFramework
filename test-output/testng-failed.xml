@@ -8,6 +8,7 @@
           <include name="beforeTest"/>
           <include name="login"/>
           <include name="afterTest"/>
+          <include name="s"/>
         </methods>
       </class> <!-- com.testcases.NewTest -->
     </classes>

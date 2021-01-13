@@ -7,6 +7,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.testng.Assert;
 
 import com.anuragdeb.helper.Library;
 
@@ -34,6 +35,7 @@ public class BaseFactory {
 				WebDriverManager.chromedriver().setup();
 				driver = new ChromeDriver();
 				
+				
 			}else if(browserName.equalsIgnoreCase("firefox")){
 			
 				WebDriverManager.firefoxdriver().setup();
@@ -47,6 +49,11 @@ public class BaseFactory {
 				WebDriverManager.iedriver().setup();
 				driver = new InternetExplorerDriver();	
 			}
+			else {
+				System.out.println("Sorry We don't support "+browserName +" Supported Names : chrome,firefox, edge,ie");
+				Assert.fail("Sorry We don't support "+browserName +" Supported Names : chrome,firefox, edge,ie");
+			}
+			driver.manage().window().maximize();
 	
 	}
 	else {	
@@ -73,6 +80,7 @@ public class BaseFactory {
 			}
 			else {
 				System.out.println("Sorry We don't support "+browserName +" Supported Names : chrome,firefox, edge,ie");
+			
 			}
 		}
 	}catch(Exception e) {

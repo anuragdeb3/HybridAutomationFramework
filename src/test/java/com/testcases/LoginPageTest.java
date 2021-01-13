@@ -1,22 +1,23 @@
 package com.testcases;
 
+import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import com.anuragdeb.helper.BaseFactory;
+import com.anuragdeb.helper.Library;
 import com.pages.LoginPage;
 
-public class NewTest extends BaseFactory {
+public class LoginPageTest extends BaseFactory {
 
-	NewTest() {
+	LoginPageTest() {
 		super();
 	}
 
 	@BeforeSuite
 	public void s() {
-		
 
 	}
 
@@ -30,7 +31,10 @@ public class NewTest extends BaseFactory {
 	public void login() {
 
 		LoginPage loginPg = new LoginPage();
-		loginPg.Login();
+		loginPg.NavigateSite();
+		Assert.assertTrue(loginPg.buttonPresent(), "Login button is not present");
+		System.out.println("Login button is present");
+		
 
 	}
 

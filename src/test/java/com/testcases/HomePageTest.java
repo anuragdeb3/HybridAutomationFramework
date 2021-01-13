@@ -1,23 +1,18 @@
 package com.testcases;
 
-import java.util.ArrayList;
-import com.anuragdeb.reports.ExtentReporterNG2;
-import java.util.List;
-
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
+import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import com.anuragdeb.helper.BaseFactory;
-import com.anuragdeb.helper.Library;
+import com.pages.HomePage;
 import com.pages.LoginPage;
 
-public class Login extends BaseFactory {
+public class HomePageTest extends BaseFactory {
 
-	Login() {
+	HomePageTest() {
 		super();
 	}
 
@@ -36,9 +31,13 @@ public class Login extends BaseFactory {
 	@Test
 	public void login() {
 
+		
 		LoginPage loginPg = new LoginPage();
-		loginPg.Login();
-
+		loginPg.NavigateSite();
+		HomePage homePg = loginPg.Login();
+		
+		Assert.assertTrue("OrangeHRM".equals(homePg.getTitleHomePage()),"HomePage Title is not matching");
+		System.out.println("Login Successful");
 	}
 
 	@AfterTest
