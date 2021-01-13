@@ -95,6 +95,7 @@ public class BaseFactory {
 		
 		if (driver != null) {
 			driver.quit();
+			System.out.println("Tear Down completed");
 		}
 	}
 
