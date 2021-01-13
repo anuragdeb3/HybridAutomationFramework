@@ -49,7 +49,7 @@
               <ul>
                 <li>
                   <a href="#" class="navigator-link " panel-name="test-xml-Suite">
-                    <span>C:\Users\Anurag_Deb\eclipse-workspace\HybridAutomationFramework\XMLFiles\testng.xml</span>
+                    <span>C:\Users\Anurag_Deb\eclipse-workspace\HybridAutomationFramework\src\test\resources\testng.xml</span>
                   </a> <!-- navigator-link  -->
                 </li>
                 <li>
@@ -91,7 +91,7 @@
               <div class="suite-section-content">
                 <ul>
                   <li>
-                    <span class="method-stats">2 methods,   2 passed</span>
+                    <span class="method-stats">1 method,   1 passed</span>
                   </li>
                   <li>
                     <span class="method-list-title passed">Passed methods</span>
@@ -103,11 +103,6 @@
                       <span>
                         <img width="3%" src="passed.png"/>
                         <a href="#" class="method navigator-link" panel-name="suite-Suite" title="com.testcases.LoginPageTest" hash-for-method="login">login</a> <!-- method navigator-link -->
-                      </span>
-                      <br/>
-                      <span>
-                        <img width="3%" src="passed.png"/>
-                        <a href="#" class="method navigator-link" panel-name="suite-Suite" title="com.testcases.HomePageTest" hash-for-method="login">login</a> <!-- method navigator-link -->
                       </span>
                       <br/>
                     </div> <!-- method-list-content passed suite-Suite -->
@@ -122,21 +117,6 @@
     <div class="wrapper">
       <div class="main-panel-root">
         <div panel-name="suite-Suite" class="panel Suite">
-          <div class="suite-Suite-class-passed">
-            <div class="main-panel-header rounded-window-top">
-              <img src="passed.png"/>
-              <span class="class-name">com.testcases.HomePageTest</span>
-            </div> <!-- main-panel-header rounded-window-top -->
-            <div class="main-panel-content rounded-window-bottom">
-              <div class="method">
-                <div class="method-content">
-                  <a name="login">
-                  </a> <!-- login -->
-                  <span class="method-name">login</span>
-                </div> <!-- method-content -->
-              </div> <!-- method -->
-            </div> <!-- main-panel-content rounded-window-bottom -->
-          </div> <!-- suite-Suite-class-passed -->
           <div class="suite-Suite-class-passed">
             <div class="main-panel-header rounded-window-top">
               <img src="passed.png"/>
@@ -155,7 +135,7 @@
         </div> <!-- panel Suite -->
         <div panel-name="test-xml-Suite" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">C:\Users\Anurag_Deb\eclipse-workspace\HybridAutomationFramework\XMLFiles\testng.xml</span>
+            <span class="header-content">C:\Users\Anurag_Deb\eclipse-workspace\HybridAutomationFramework\src\test\resources\testng.xml</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <pre>
@@ -165,7 +145,6 @@
   &lt;test thread-count=&quot;5&quot; name=&quot;Test&quot;&gt;
     &lt;classes&gt;
       &lt;class name=&quot;com.testcases.LoginPageTest&quot;/&gt;
-      &lt;class name=&quot;com.testcases.HomePageTest&quot;/&gt;
     &lt;/classes&gt;
   &lt;/test&gt; &lt;!-- Test --&gt;
 &lt;/suite&gt; &lt;!-- Suite --&gt;
@@ -179,7 +158,7 @@
           <div class="main-panel-content rounded-window-bottom">
             <ul>
               <li>
-                <span class="test-name">Test (2 classes)</span>
+                <span class="test-name">Test (1 class)</span>
               </li>
             </ul>
           </div> <!-- main-panel-content rounded-window-bottom -->
@@ -205,20 +184,16 @@ data.addColumn('number', 'Number');
 data.addColumn('string', 'Method');
 data.addColumn('string', 'Class');
 data.addColumn('number', 'Time (ms)');
-data.addRows(2);
+data.addRows(1);
 data.setCell(0, 0, 0)
 data.setCell(0, 1, 'login')
-data.setCell(0, 2, 'com.testcases.HomePageTest')
-data.setCell(0, 3, 4997);
-data.setCell(1, 0, 1)
-data.setCell(1, 1, 'login')
-data.setCell(1, 2, 'com.testcases.LoginPageTest')
-data.setCell(1, 3, 3971);
+data.setCell(0, 2, 'com.testcases.LoginPageTest')
+data.setCell(0, 3, 6754);
 window.suiteTableData['Suite']= { tableData: data, tableDiv: 'times-div-Suite'}
 return data;
 }
               </script>
-              <span class="suite-total-time">Total running time: 8 seconds</span>
+              <span class="suite-total-time">Total running time: 6 seconds</span>
               <div id="times-div-Suite">
               </div> <!-- times-div-Suite -->
             </div> <!-- times-div -->
@@ -244,53 +219,18 @@ return data;
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <div class="chronological-class">
-              <div class="chronological-class-name">com.testcases.HomePageTest</div> <!-- chronological-class-name -->
-              <div class="configuration-suite before">
-                <span class="method-name">s</span>
+              <div class="chronological-class-name">com.testcases.LoginPageTest</div> <!-- chronological-class-name -->
+              <div class="configuration-test before">
+                <span class="method-name">beforeTest</span>
                 <span class="method-start">0 ms</span>
-              </div> <!-- configuration-suite before -->
-            </div> <!-- chronological-class -->
-            <div class="chronological-class">
-              <div class="chronological-class-name">com.testcases.LoginPageTest</div> <!-- chronological-class-name -->
-              <div class="configuration-suite before">
-                <span class="method-name">s</span>
-                <span class="method-start">13 ms</span>
-              </div> <!-- configuration-suite before -->
-            </div> <!-- chronological-class -->
-            <div class="chronological-class">
-              <div class="chronological-class-name">com.testcases.HomePageTest</div> <!-- chronological-class-name -->
-              <div class="configuration-test before">
-                <span class="method-name">beforeTest</span>
-                <span class="method-start">17 ms</span>
-              </div> <!-- configuration-test before -->
-            </div> <!-- chronological-class -->
-            <div class="chronological-class">
-              <div class="chronological-class-name">com.testcases.LoginPageTest</div> <!-- chronological-class-name -->
-              <div class="configuration-test before">
-                <span class="method-name">beforeTest</span>
-                <span class="method-start">11333 ms</span>
               </div> <!-- configuration-test before -->
               <div class="test-method">
                 <span class="method-name">login</span>
-                <span class="method-start">22435 ms</span>
-              </div> <!-- test-method -->
-            </div> <!-- chronological-class -->
-            <div class="chronological-class">
-              <div class="chronological-class-name">com.testcases.HomePageTest</div> <!-- chronological-class-name -->
-              <div class="test-method">
-                <span class="method-name">login</span>
-                <span class="method-start">26415 ms</span>
+                <span class="method-start">13633 ms</span>
               </div> <!-- test-method -->
               <div class="configuration-test after">
                 <span class="method-name">afterTest</span>
-                <span class="method-start">31415 ms</span>
-              </div> <!-- configuration-test after -->
-            </div> <!-- chronological-class -->
-            <div class="chronological-class">
-              <div class="chronological-class-name">com.testcases.LoginPageTest</div> <!-- chronological-class-name -->
-              <div class="configuration-test after">
-                <span class="method-name">afterTest</span>
-                <span class="method-start">40223 ms</span>
+                <span class="method-start">20392 ms</span>
               </div> <!-- configuration-test after -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->
