@@ -7,7 +7,8 @@ This repo consist of a hybrid Automation framework for Web UI Apps along with ut
 Through this framework it would be easy to access any file over SFTP.
 
 This also includes WebDriverManager through which browsers's binary has been handled.
-It has a set of utilities for web and DBs
+It has a set of utilities for web UI and DBs
+
 
 ## Web Utilities:
 1.	public static void LoadConfig(String FileName) //Load property file once and use it all over your test case
@@ -52,9 +53,7 @@ It has a set of utilities for web and DBs
 40.	public static boolean CompareMultiDimList(List<?> list1, List<?> list2) 
 41.	public static boolean isNullOrEmptyString(String str) 
 42.	public static void takeScreenShot()
-
-	 	
-	 	
+ 	
 	 	
 ## DB Utilities
 1.	public static Connection GPconnect(String Host, String DBName, String User, String Pass) 
@@ -71,3 +70,6 @@ It has a set of utilities for web and DBs
 12.	public static List<String> getDBListOneColumn(Connection conn, String query) 
 13.	public static void teardownConnection(Connection conn) 
 14.	public boolean compareResultSets(ResultSet resultSet1, ResultSet resultSet2)
+
+
+Note: Use JDK 1.8 as some of the methods uses lambda expressions which was introduced in 1.8.
