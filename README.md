@@ -9,8 +9,6 @@ Through this framework it would be easy to access any file over SFTP.
 This also includes WebDriverManager through which browsers's binary has been handled.
 It has a set of utilities for web UI and DBs
 
---Just adding a line   -----------------------in realbranchs
-
 ## Web Utilities:
 
 1.	public static void LoadConfig(String FileName) //Load property file once and use it all over your test case
@@ -56,7 +54,6 @@ It has a set of utilities for web UI and DBs
 41.	public static boolean isNullOrEmptyString(String str) 
 42.	public static void takeScreenShot()
  	
---Add a line	 -------------------added line in master	
         
 ## DB Utilities
 
