@@ -9,7 +9,7 @@ Through this framework it would be easy to access any file over SFTP.
 This also includes WebDriverManager through which browsers's binary has been handled.
 It has a set of utilities for web and DBs
 
-# Web Utilities:
+## Web Utilities:
 1.	public static void LoadConfig(String FileName) //Load property file once and use it all over your test case
 2.	public static String getVal(String key) // get the value from the property file loaded
 3.	public static boolean IsElementPresent(WebDriver driver, String locator, String locatorValue) //Check for any element present
@@ -56,7 +56,7 @@ It has a set of utilities for web and DBs
 	 	
 	 	
 	 	
-# DB Utilities
+## DB Utilities
 1.	public static Connection GPconnect(String Host, String DBName, String User, String Pass) 
 2.	public static Connection MemSQLconnect(String Host, String DBName, String User, String Pass) 
 3.	public static Connection OracleConnect(String Host, String ServiceName, String User, String Pass) 
