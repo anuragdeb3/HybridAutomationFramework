@@ -72,3 +72,5 @@ It has a set of utilities for web UI and DBs
 13.	public static void teardownConnection(Connection conn) 
 14.	public boolean compareResultSets(ResultSet resultSet1, ResultSet resultSet2)
 
+
+###Note: Use JDK 1.8 as some of the methods uses lambda expressions which was introduced in 1.8.
