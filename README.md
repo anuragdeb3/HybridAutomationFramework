@@ -56,7 +56,7 @@ It has a set of utilities for web UI and DBs
 41.	public static boolean isNullOrEmptyString(String str) 
 42.	public static void takeScreenShot()
  	
---Add a line	 	
+--Add a line	 -------------------added line in master	
         
 ## DB Utilities
 
