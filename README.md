@@ -73,4 +73,6 @@ It has a set of utilities for web UI and DBs
 14.	public boolean compareResultSets(ResultSet resultSet1, ResultSet resultSet2)
 
 
+
+Added line
 Note: Use JDK 1.8 as some of the methods uses lambda expressions which was introduced in 1.8.
