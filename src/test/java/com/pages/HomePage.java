@@ -17,4 +17,11 @@ public class HomePage extends BaseFactory{
 		return driver.getTitle();
 	}
 
+	
+	
+	
+	
+	
+	
+	
 }

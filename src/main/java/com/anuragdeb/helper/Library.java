@@ -25,6 +25,11 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.logging.log4j.core.impl.Log4jContextFactory;
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.OutputType;
@@ -939,5 +944,73 @@ public class Library {
 	
 	
 	
+	public static Object[][] getData(String FileName, String sheetName){
+		
+		FileInputStream file=null;
+		Workbook book;
+		Sheet sheet;
+		Object[] [] data = null ;
+		
+		//C:\Users\anudeb\TestData.xlsx
+		String path =System.getProperty("user.home")+"\\Desktop\\"+FileName;
+		System.out.println(path);
+		
+		try {
+		file = new FileInputStream(path);
+
+		book = WorkbookFactory.create(file);
+		sheet = book.getSheet(sheetName);
+		
+		int rowValue = sheet.getLastRowNum();
+		int colValue = sheet.getRow(0).getPhysicalNumberOfCells();
+		
+		data = new Object[rowValue][colValue];
+		
+		for(int row =0;row<rowValue;row++) {
+			for(int col =0;col<colValue;col++) {
+				
+				//System.out.println();
+				
+				String Value = sheet.getRow(row+1).getCell(col).toString();
+				
+				//System.out.println(Library.isNumeric(Value));
+				
+				
+				
+				data[row][col] = Value;
+				
+				//System.out.println(row +"==="+col+"==="+data[row][col]);
+				
+				
+				
+			}
+			
+			
+			
+			
+		}
+		
+		
+		
+		
+		
+		
+		}catch(FileNotFoundException e) {
+			System.out.println("Check File Path, it should be in Desktop directory");	
+			Assert.fail();
+		}
+		catch(InvalidFormatException e) {
+			e.printStackTrace();
+			Assert.fail();
+		}
+		catch(IOException e) {
+			e.printStackTrace();
+			Assert.fail();
+		}
+		
+		
+		return data;	
+		
+	}
 	
 }

@@ -1,39 +1,63 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results skipped="0" failed="0" ignored="0" total="2" passed="2">
+<testng-results ignored="0" total="4" passed="4" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite name="Suite" duration-ms="49148" started-at="2021-01-13T12:26:43Z" finished-at="2021-01-13T12:27:32Z">
+  <suite started-at="2021-03-21T13:41:42Z" name="Default suite" finished-at="2021-03-21T13:41:43Z" duration-ms="1327">
     <groups>
     </groups>
-    <test name="Test" duration-ms="49148" started-at="2021-01-13T12:26:43Z" finished-at="2021-01-13T12:27:32Z">
-      <class name="com.testcases.LoginPageTest">
-        <test-method status="PASS" signature="beforeTest()[pri:0, instance:com.testcases.LoginPageTest@14bf9759]" name="beforeTest" is-config="true" duration-ms="13580" started-at="2021-01-13T12:26:43Z" finished-at="2021-01-13T12:26:57Z">
+    <test started-at="2021-03-21T13:41:42Z" name="Default test" finished-at="2021-03-21T13:41:43Z" duration-ms="1327">
+      <class name="com.testcases.TestData">
+        <test-method signature="DatatoTest(java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:com.testcases.TestData@7d3d101b]" started-at="2021-03-21T13:41:43Z" name="DatatoTest" data-provider="SearchData" finished-at="2021-03-21T13:41:43Z" duration-ms="27" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[Anurag]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[1234.0]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[Hi]]>
+              </value>
+            </param>
+          </params>
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- beforeTest -->
-        <test-method status="PASS" signature="login()[pri:0, instance:com.testcases.LoginPageTest@14bf9759]" name="login" duration-ms="3927" started-at="2021-01-13T12:26:57Z" finished-at="2021-01-13T12:27:01Z">
+        </test-method> <!-- DatatoTest -->
+        <test-method signature="DatatoTest(java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:com.testcases.TestData@7d3d101b]" started-at="2021-03-21T13:41:43Z" name="DatatoTest" data-provider="SearchData" finished-at="2021-03-21T13:41:43Z" duration-ms="4" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[Chandan]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[324j3]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[Hello]]>
+              </value>
+            </param>
+          </params>
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- login -->
-        <test-method status="PASS" signature="afterTest()[pri:0, instance:com.testcases.LoginPageTest@14bf9759]" name="afterTest" is-config="true" duration-ms="6546" started-at="2021-01-13T12:27:01Z" finished-at="2021-01-13T12:27:07Z">
+        </test-method> <!-- DatatoTest -->
+        <test-method signature="DatatoTest1()[pri:0, instance:com.testcases.TestData@7d3d101b]" started-at="2021-03-21T13:41:43Z" name="DatatoTest1" finished-at="2021-03-21T13:41:43Z" duration-ms="2" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- afterTest -->
-      </class> <!-- com.testcases.LoginPageTest -->
-      <class name="com.testcases.HomePageTest">
-        <test-method status="PASS" signature="beforeTest()[pri:0, instance:com.testcases.HomePageTest@5f341870]" name="beforeTest" is-config="true" duration-ms="9977" started-at="2021-01-13T12:27:07Z" finished-at="2021-01-13T12:27:17Z">
+        </test-method> <!-- DatatoTest1 -->
+        <test-method signature="DatatoTest2()[pri:0, instance:com.testcases.TestData@7d3d101b]" started-at="2021-03-21T13:41:43Z" name="DatatoTest2" finished-at="2021-03-21T13:41:43Z" duration-ms="2" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- beforeTest -->
-        <test-method status="PASS" signature="login()[pri:0, instance:com.testcases.HomePageTest@5f341870]" name="login" duration-ms="10067" started-at="2021-01-13T12:27:17Z" finished-at="2021-01-13T12:27:27Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- login -->
-        <test-method status="PASS" signature="afterTest()[pri:0, instance:com.testcases.HomePageTest@5f341870]" name="afterTest" is-config="true" duration-ms="4938" started-at="2021-01-13T12:27:27Z" finished-at="2021-01-13T12:27:32Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- afterTest -->
-      </class> <!-- com.testcases.HomePageTest -->
-    </test> <!-- Test -->
-  </suite> <!-- Suite -->
+        </test-method> <!-- DatatoTest2 -->
+      </class> <!-- com.testcases.TestData -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
 </testng-results>
