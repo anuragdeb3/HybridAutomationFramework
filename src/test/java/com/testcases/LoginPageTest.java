@@ -1,18 +1,19 @@
 package com.testcases;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
-import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeSuite;
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import com.anuragdeb.helper.BaseFactory;
-import com.anuragdeb.helper.Library;
 import com.pages.LoginPage;
 
 public class LoginPageTest extends BaseFactory {
+	
+	
+	final static Logger log = LogManager.getLogger(LoginPageTest.class);
 
 	LoginPageTest() {
 		super();
@@ -32,7 +33,7 @@ public class LoginPageTest extends BaseFactory {
 		loginPg.NavigateSite();
 		
 		Assert.assertTrue(loginPg.buttonPresent(), "Login button is not present");
-		System.out.println("Login button is present");
+		log.info("Login button is present");
 		
 
 	}

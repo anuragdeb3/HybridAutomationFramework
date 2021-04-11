@@ -25,7 +25,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import org.apache.commons.io.FileUtils;
-import org.apache.logging.log4j.core.impl.Log4jContextFactory;
+import org.apache.log4j.Logger;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
@@ -59,7 +59,10 @@ public class Library {
 		Library.driver = driver;
 	}
 
-	// final static Logger log = Logger.getLogger(Library.class);
+	final static Logger log = Logger.getLogger(Library.class);
+	
+	
+	
 	SoftAssert softAssert = new SoftAssert();
 	public static Properties prop = new Properties();
 
@@ -88,6 +91,8 @@ public class Library {
 			inStream.close();
 		} catch (NullPointerException e) {
 			System.out.println("Can't load null, Check Path. Cause : " + e);
+			log.error("Can't load null, Check Path. Cause : " , e);
+			
 			try {
 				
 				System.out.println("Kindly Check if the parameters are blank or not :" + e);
