@@ -15,7 +15,7 @@ It has a set of utilities for web UI and DBs
 
 
 
-1.	public static void LoadConfig(String FileName) //Load property file once and use it all over your test case
+1.	public static void LoadConfig(String FileName) //Load property file once in your test case (before method) and use it all over your test case/workflow
 2.	public static String getVal(String key) // get the value from the property file loaded
 3.	public static boolean IsElementPresent(WebDriver driver, String locator, String locatorValue) //Check for any element present
 4.	public static boolean Ispresent(WebDriver driver, WebElement ele) 
@@ -79,5 +79,6 @@ It has a set of utilities for web UI and DBs
 12.	public static List<String> getDBListOneColumn(Connection conn, String query) 
 13.	public static void teardownConnection(Connection conn) 
 14.	public boolean compareResultSets(ResultSet resultSet1, ResultSet resultSet2)
+15. public static Object[][] readFromCSVToArray(String FileName,int rownum, int numcolumn)
 
 ###Note: Use JDK 1.8 as some of the methods uses lambda expressions which was introduced in 1.8.
