@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
@@ -60,9 +61,7 @@ public class Library {
 	}
 
 	final static Logger log = Logger.getLogger(Library.class);
-	
-	
-	
+
 	SoftAssert softAssert = new SoftAssert();
 	public static Properties prop = new Properties();
 
@@ -91,24 +90,22 @@ public class Library {
 			inStream.close();
 		} catch (NullPointerException e) {
 			System.out.println("Can't load null, Check Path. Cause : " + e);
-			log.error("Can't load null, Check Path. Cause : " , e);
-			
+			log.error("Can't load null, Check Path. Cause : ", e);
+
 			try {
-				
+
 				System.out.println("Kindly Check if the parameters are blank or not :" + e);
 			} catch (Exception e1) {
-				
+
 				e1.printStackTrace();
 			}
 		} catch (FileNotFoundException e) {
 			System.out.println("Not Able to Load File, Check Path. Cause : " + e);
 			try {
-				
 
 				System.out.println("Cause : " + e
 						+ "File Not Found Exception Raised, Kindly Check if the File path is correct or not");
 			} catch (Exception e1) {
-				
 
 				e1.printStackTrace();
 			}
@@ -117,11 +114,10 @@ public class Library {
 		} catch (Exception e) {
 			System.out.println("Exception raised, Check Path. Cause : " + e);
 			try {
-				
 
 				System.out.println("Kindly Check LoadConfig method");
 			} catch (Exception e1) {
-				
+
 				e1.printStackTrace();
 			}
 
@@ -137,20 +133,17 @@ public class Library {
 
 	public static boolean IsElementPresent(WebDriver driver, String locator, String locatorValue) {
 		try {
-			WebElement element = null ;
+			WebElement element = null;
 
-			if(locator.equalsIgnoreCase("xpath")){
-					element = driver.findElement(By.xpath(locatorValue));
-					}
-			else if(locator.equalsIgnoreCase("id")){
+			if (locator.equalsIgnoreCase("xpath")) {
+				element = driver.findElement(By.xpath(locatorValue));
+			} else if (locator.equalsIgnoreCase("id")) {
 				element = driver.findElement(By.id(locatorValue));
-				}
-			else if(locator.equalsIgnoreCase("className")){
+			} else if (locator.equalsIgnoreCase("className")) {
 				element = driver.findElement(By.className(locatorValue));
-				}
-			else if(locator.equalsIgnoreCase("tagName")){
+			} else if (locator.equalsIgnoreCase("tagName")) {
 				element = driver.findElement(By.tagName(locatorValue));
-				}
+			}
 
 			if (element.isDisplayed() == true) {
 				// System.out.println("Element Present");
@@ -193,8 +186,7 @@ public class Library {
 	 * This Method determines if the string is numeric or not even if it is of
 	 * decimal
 	 * 
-	 * @param strNum
-	 *            : String Value that has to be determined
+	 * @param strNum : String Value that has to be determined
 	 */
 
 	public static boolean isNumeric(String strNum) {
@@ -212,10 +204,8 @@ public class Library {
 	/**
 	 * This Method Copy the file from source to destination folder
 	 * 
-	 * @param from
-	 *            : Source path with filename
-	 * @param to
-	 *            : Destination path
+	 * @param from : Source path with filename
+	 * @param to   : Destination path
 	 */
 	public static void copyFile(String source, String destination) {
 		Path src = Paths.get(source);
@@ -255,8 +245,7 @@ public class Library {
 
 	/**
 	 * 
-	 * @param DateFormat
-	 *            : Date in YYYYMMdd format
+	 * @param DateFormat : Date in YYYYMMdd format
 	 * @return : this method will return the current system date in YYYYMMdd format
 	 */
 	public static String getCustomisedDate(String DateFormat) {
@@ -321,7 +310,7 @@ public class Library {
 
 			BufferedReader reader = new BufferedReader(new InputStreamReader(in));
 			String line;
-			int index = 0;
+			// int index = 0;
 
 			while ((line = reader.readLine()) != null) {
 				// System.out.println(++index + " : " + line);
@@ -351,10 +340,8 @@ public class Library {
 	/**
 	 * 
 	 * 
-	 * @param KEY
-	 *            : Key from the property File
-	 * @param CONFIG_PATH
-	 *            : Property file path
+	 * @param KEY         : Key from the property File
+	 * @param CONFIG_PATH : Property file path
 	 * @return This method will return the value of the key passed form property
 	 *         file
 	 */
@@ -363,26 +350,23 @@ public class Library {
 		try {
 			Thread.sleep(TimeInMiliSeconds);
 		} catch (InterruptedException e1) {
-			
+
 			e1.printStackTrace();
 		}
 	}
 
 	/**
 	 * 
-	 * @param command
-	 *            command with complete path
-	 * @param host
-	 *            Name of the Host
-	 * @param user
-	 *            User name to login
-	 * @param password
-	 *            password to login
+	 * @param command  command with complete path
+	 * @param host     Name of the Host
+	 * @param user     User name to login
+	 * @param password password to login
 	 * @return This method run any shell script or any command given in linux system
 	 *         through putty.
 	 */
 	@SuppressWarnings("deprecation")
-	public static void run_SparkJobOnLinux(String command, String host, String user, String password) {
+	public static void runCommandOnLinux(String command, String host, String user, String password,
+			String expectedMsg) {
 		// String consoleMessage=null;
 		JSch jsch = new JSch();
 		Session session;
@@ -393,7 +377,7 @@ public class Library {
 			session.setConfig("PreferredAuthentications", "publickey,keyboard-interactive,password");
 			session.connect();
 			System.out.println("Connected to " + host);
-		
+
 			Channel channel = session.openChannel("exec");
 			((ChannelExec) channel).setCommand(command);
 			channel.setInputStream(null);
@@ -415,18 +399,18 @@ public class Library {
 			boolean flag = false;
 			for (String Msgline : consoleMsgList) {
 
-				if (Msgline.contains("Spark Job Successfully completed")) {
-					System.out.println("Spark Job Ran Successfully");
-					
+				if (Msgline.contains(expectedMsg)) {
+					System.out.println("Ran Successfully");
+
 					flag = true;
 				}
 			}
 
 			if (flag == false) {
 
-				System.out.println("Spark Job failed");
-				
-				Assert.assertTrue(flag == false, "Spark Job failed");
+				System.out.println("Job failed");
+
+				Assert.assertTrue(flag == false, " Job failed");
 			}
 
 			channel.disconnect();
@@ -434,10 +418,10 @@ public class Library {
 		} catch (Exception e) {
 			try {
 
-				System.out.println("Generic Exception raised at run_SparkJobOnLinux" + e);
-				
+				System.out.println("Generic Exception raised at runCommandOnLinux" + e);
+
 			} catch (Exception e1) {
-				
+
 				e1.printStackTrace();
 			}
 			e.printStackTrace();
@@ -456,7 +440,7 @@ public class Library {
 			session.setConfig("PreferredAuthentications", "publickey,keyboard-interactive,password");
 			session.connect();
 			System.out.println("Connected to Host " + host);
-			
+
 			Channel channel = session.openChannel("sftp");
 			channel.connect();
 
@@ -468,11 +452,11 @@ public class Library {
 			session.disconnect();
 		} catch (Exception e) {
 			try {
-				
+
 				System.out.println(e.getMessage() + "Get Excel from Linux Server, Not able to fetch Excel File.");
 
 			} catch (Exception e1) {
-				
+
 				e1.printStackTrace();
 			}
 			e.printStackTrace();
@@ -508,12 +492,12 @@ public class Library {
 			if (e.getMessage().contains("Expected condition failed: waiting for element to be clickable")) {
 
 				try {
-					
+
 					System.out.println(e.getMessage()
 							+ "Performance Issues, the reason might be due to performance issue/network issue, the loading is not completed ");
 
 				} catch (Exception e1) {
-					
+
 					e1.printStackTrace();
 				}
 
@@ -575,22 +559,14 @@ public class Library {
 	 */
 
 	final static SftpProgressMonitor monitor = new SftpProgressMonitor() {
-		public void init(final int op, final String source, final String target, final long max) {
-			System.out.println("sftp start uploading file from:" + source + " to:" + target);
-		}
+		public void init(final int op, final String source, final String target,final long max){System.out.println("sftp start uploading file from:"+source+" to:"+target);}
 
-		public boolean count(final long count) {
+	public boolean count(final long count){
 
-			// log.debug("sftp sending bytes: "+count);
-			System.out.println("sftp sending bytes: " + count);
-			return true;
-		}
+	// log.debug("sftp sending bytes: "+count);
+	System.out.println("sftp sending bytes: "+count);return true;}
 
-		public void end() {
-			System.out.println("sftp uploading is done.");
-			System.out.println("sftp uploading is done.");
-		}
-	};
+	public void end(){System.out.println("sftp uploading is done.");System.out.println("sftp uploading is done.");}};
 
 	/*
 	 * Will copy file from one server to another Below method will upload the data
@@ -605,20 +581,20 @@ public class Library {
 		System.out.println(excelPath);
 
 		try {
-			
+
 			// from Linux Server...");
 			System.out.println("Connect to Server, Initiate getting file from Linux Server...");
 			JSch jsch = new JSch();
 
 			System.out.println("Trying to connect.....");
-		
+
 			// connect.....");
 			session = jsch.getSession(username, hostname, 22);
 			session.setConfig("StrictHostKeyChecking", "no");
 			session.setPassword(password);
 			session.connect();
 			System.out.println("is server connected? " + session.isConnected());
-			
+
 			Channel channel = session.openChannel("sftp");
 			channel.connect();
 			sftpChannel = (ChannelSftp) channel;
@@ -629,10 +605,10 @@ public class Library {
 			System.out.println("Exception is raised in putFile method :" + e);
 
 			try {
-				
+
 				System.out.println("Exception Raised, Kindly Check putFile method ");
 			} catch (Exception e1) {
-				
+
 				e1.printStackTrace();
 			}
 
@@ -650,7 +626,7 @@ public class Library {
 			sftpChannel.exit();
 			session.disconnect();
 			System.out.println("File Load" + " Finished getting file from Linux Server...");
-			
+
 		}
 	}
 
@@ -668,19 +644,18 @@ public class Library {
 		System.out.println(excelPath);
 		System.out.println("Excel Path" + excelPath);
 		try {
-			
 
 			System.out.println("Get File from Server, Initiate getting file from Linux Server...");
 			JSch jsch = new JSch();
 
 			System.out.println("Trying to connect.....");
-		
+
 			session = jsch.getSession(username, hostname, 22);
 			session.setConfig("StrictHostKeyChecking", "no");
 			session.setPassword(password);
 			session.connect();
 			System.out.println("is server connected? " + session.isConnected());
-		
+
 			Channel channel = session.openChannel("sftp");
 			channel.connect();
 			sftpChannel = (ChannelSftp) channel;
@@ -781,15 +756,14 @@ public class Library {
 			if (list1.size() == list2.size()) {
 				System.out.println("Size is Same");
 
-
 				if (list1.equals(list2)) {
 					System.out.println("List Compare,  Both list are equal");
-					
+
 					flag = true;
 				} else {
 					System.out
 							.println("List Compare:  Both list are not equal List1 :" + list1 + " \n list2: " + list2);
-					
+
 					flag = false;
 				}
 
@@ -933,89 +907,141 @@ public class Library {
 		return true;
 	}
 
-	
 	public static void takeScreenShot() {
 		File scrnFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-		String screenShotFolder = System.getProperty("user.dir")+"/ScreenShots/";
-		
+		String screenShotFolder = System.getProperty("user.dir") + "/ScreenShots/";
+
 		try {
-			FileUtils.copyFile(scrnFile,new File (screenShotFolder+"Screenshot_"+System.currentTimeMillis()+".png"));
+			FileUtils.copyFile(scrnFile,
+					new File(screenShotFolder + "Screenshot_" + System.currentTimeMillis() + ".png"));
 		} catch (IOException e) {
-			
-			System.out.println("Captured IOException at takeScreenShot method "+e);
+
+			System.out.println("Captured IOException at takeScreenShot method " + e);
 		}
-		
+
 	}
-	
-	
-	
-	public static Object[][] getData(String FileName, String sheetName){
-		
-		FileInputStream file=null;
+
+	public static Object[][] getData(String FileName, String sheetName) {
+
+		FileInputStream file = null;
 		Workbook book;
 		Sheet sheet;
-		Object[] [] data = null ;
-		
-		//C:\Users\anudeb\TestData.xlsx
+		Object[][] data = null;
+
+		// C:\Users\anudeb\TestData.xlsx
+		String path = System.getProperty("user.home") + "\\Desktop\\" + FileName;
+		System.out.println(path);
+
+		try {
+			file = new FileInputStream(path);
+
+			book = WorkbookFactory.create(file);
+			sheet = book.getSheet(sheetName);
+
+			int rowValue = sheet.getLastRowNum();
+			int colValue = sheet.getRow(0).getPhysicalNumberOfCells();
+
+			data = new Object[rowValue][colValue];
+
+			for (int row = 0; row < rowValue; row++) {
+				for (int col = 0; col < colValue; col++) {
+
+					// System.out.println();
+
+					String Value = sheet.getRow(row + 1).getCell(col).toString();
+
+					// System.out.println(Library.isNumeric(Value));
+
+					data[row][col] = Value;
+
+					// System.out.println(row +"==="+col+"==="+data[row][col]);
+
+				}
+
+			}
+
+		} catch (FileNotFoundException e) {
+			System.out.println("Check File Path, it should be in Desktop directory");
+			Assert.fail();
+		} catch (InvalidFormatException e) {
+			e.printStackTrace();
+			Assert.fail();
+		} catch (IOException e) {
+			e.printStackTrace();
+			Assert.fail();
+		}
+
+		return data;
+
+	}
+
+
+public static Object[][] readFromCSVToArray(String FileName,int rownum, int numcolumn){
+
 		String path =System.getProperty("user.home")+"\\Desktop\\"+FileName;
 		System.out.println(path);
-		
-		try {
-		file = new FileInputStream(path);
+		Object[][] data =null;
+		File csvFile =null;
+		FileReader fw =null;
+		BufferedReader br = null;
 
-		book = WorkbookFactory.create(file);
-		sheet = book.getSheet(sheetName);
+		try {
+ 
+			csvFile = new File(path);
+			fw = new FileReader(csvFile);
+			br = new BufferedReader(fw);
+			String line = "";
+			int count=0;
+			int row=0;
+  
+			int rowValue =(int) csvFile.length();
+
+			System.out.println(rowValue+"-"+numcolumn);
+     
+			data = new Object[rowValue][numcolumn];
+  
+		  // System.out.println(br.readLine());
+		   while((line = br.readLine()) != null) {
+		   
+		   //System.out.println(line);
+		    if(count > 0) {
+		    
+		     System.out.println("line "+line);
+		     String [] columnData = line.split(",");
+		   
+		      for(int col =0;col<numcolumn;col++) {
+		      
+		      // System.out.println(row+"----"+col);
+		       data[row][col]= columnData[col];
+		      // System.out.println(data[row][col]);
+		      
+		      }
+		     count++;
+		     row++;
+		    
+		     }
+		    else {
+		     System.out.println("Header");
+		     System.out.println(line);
 		
-		int rowValue = sheet.getLastRowNum();
-		int colValue = sheet.getRow(0).getPhysicalNumberOfCells();
+		     count++;
+		    }
+		  
+		   }
+
+		 } catch (FileNotFoundException e) {
+		  log.error("Check File Path, it should be in Desktop directory");
+		  Assert.fail();
+		 } catch (IOException e) {
+		  log.error("Check File Path, it should be in Desktop directory");
+		  Assert.fail();
+		 }
 		
-		data = new Object[rowValue][colValue];
-		
-		for(int row =0;row<rowValue;row++) {
-			for(int col =0;col<colValue;col++) {
-				
-				//System.out.println();
-				
-				String Value = sheet.getRow(row+1).getCell(col).toString();
-				
-				//System.out.println(Library.isNumeric(Value));
-				
-				
-				
-				data[row][col] = Value;
-				
-				//System.out.println(row +"==="+col+"==="+data[row][col]);
-				
-				
-				
-			}
-			
-			
-			
-			
-		}
+		 finally {
+		 }
 		
 		
-		
-		
-		
-		
-		}catch(FileNotFoundException e) {
-			System.out.println("Check File Path, it should be in Desktop directory");	
-			Assert.fail();
-		}
-		catch(InvalidFormatException e) {
-			e.printStackTrace();
-			Assert.fail();
-		}
-		catch(IOException e) {
-			e.printStackTrace();
-			Assert.fail();
-		}
-		
-		
-		return data;	
+		 return data;
 		
 	}
-	
 }
