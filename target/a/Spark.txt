@@ -1,0 +1,231 @@
+Spark is a unified computing engine and a set of libraries for parallel data processing on computer clusters. 
+
+Spark supports multiple widely used programming languages (Python, Java, Scala, and R).
+
+Includes libraries for diverse tasks ranging from Sql to streaming and machine learning
+
+Runs anywhere from a laptop to a cluster of thousands of servers. This makes it an easy system to start with and scale up to big data processing on an incredibly large scale.
+
+It is based on Hadoop MapReduce and it extends the MapReduce model to efficiently use it for more types of computations, which includes interactive queries and stream processing. 
+Later I will tell you about what Mapreduce model is.
+
+The main feature of Spark is its in-memory cluster computing that increases the processing speed of an application.
+
+So when I say In-memory computing, it  means using a type of middleware software that allows one to store data in RAM, across a cluster of computers, and process it in parallel. Consider operational datasets typically stored in a centralized database which you can now store in “connected” RAM across multiple computers.
+
+It is based on Hadoop MapReduce and it extends the MapReduce model to efficiently use it for more types of computations, which includes interactive queries and stream processing. 
+
+The main feature of Spark is its in-memory cluster computing that increases the processing speed of an application.
+
+
+Spark Architecture Overview
+Apache Spark has a well-defined layered architecture where all the spark components and layers are loosely coupled. This architecture is further integrated with various extensions and libraries. Apache Spark Architecture is based on two main abstractions:
+
+Resilient Distributed Dataset (RDD)
+Directed Acyclic Graph (DAG)
+
+
+But before diving any deeper into the Spark architecture, let me explain few fundamental concepts of Spark like Spark Eco-system and RDD. This will help you in gaining better insights.
+
+Let me first explain what is Spark Eco-System. 
+
+As you can see from the below image, the spark ecosystem is composed of various components like Spark SQL, Spark Streaming, MLlib, GraphX, and the Core API component.
+
+Apache Spark Core
+Spark Core is the underlying general execution engine for spark platform that all other functionality is built upon. 
+It provides In-Memory computing and referencing datasets in external storage systems.
+Spark Core is the base engine for large-scale parallel and distributed data processing. Further, additional libraries which are built on the top of the core allows diverse workloads for streaming, SQL, and machine learning. It is responsible for memory management and fault recovery, scheduling, distributing and monitoring jobs on a cluster & interacting with storage systems.
+
+Spark SQL
+Spark SQL is a component on top of Spark Core that introduces a new data abstraction called SchemaRDD, which provides support for structured and semi-structured data.
+Spark SQL is a new module in Spark which integrates relational processing with Spark’s functional programming API. It supports querying data either via SQL or via the Hive Query Language. For those of you familiar with RDBMS, Spark SQL will be an easy transition from your earlier tools where you can extend the boundaries of traditional relational data processing.
+
+Spark Streaming
+Spark Streaming leverages Spark Core's fast scheduling capability to perform streaming analytics. 
+It ingests data in mini-batches and performs RDD (Resilient Distributed Datasets) transformations on those mini-batches of data.
+
+MLlib (Machine Learning Library)
+MLlib is a distributed machine learning framework above Spark.
+
+GraphX
+GraphX is a distributed graph-processing framework on top of Spark. 
+It provides an API for expressing graph computation that can model the user-defined graphs by using API. 
+It also provides an optimized runtime for this abstraction.
+
+
+
+Resilient Distributed Datasets (RDD) is a fundamental data structure of Spark.  
+Resilient: Fault tolerant and is capable of rebuilding data on failure
+Distributed: Distributed data among the multiple nodes in a cluster
+Dataset: Collection of partitioned data with values
+
+Each dataset in RDD is divided into logical partitions, which may be computed on different nodes of the cluster. 
+RDDs can contain any type of Python, Java, or Scala objects, including user-defined classes.
+
+RDD is a read-only, partitioned collection of records. 
+
+It is a layer of abstracted data over the distributed collection.
+Now you might be wondering about its working. Well, the data in an RDD is split into chunks based on a key. RDDs are highly resilient, i.e, they are able to recover quickly from any issues as the same data chunks are replicated across multiple executor nodes. Thus, even if one executor node fails, another will still process the data. 
+This allows you to perform your functional calculations against your dataset very quickly by harnessing the power of multiple nodes. 
+
+
+With RDDs, you can perform two types of operations:
+
+Transformations: They are the operations that are applied to create a new RDD.
+Actions: They are applied on an RDD to instruct Apache Spark to apply computation and pass the result back to the driver.
+
+I hope you got a thorough understanding of RDD concepts. Now let’s move further and see the working of Spark Architecture.
+
+
+
+
+
+
+MapReduce is a programming framework that allows us to perform distributed 
+and parallel processing on large data sets in a distributed environment.
+
+MapReduce consists of two distinct tasks – Map and Reduce.
+So, the first is the map job, where a block of data is read and processed to produce key-value pairs as intermediate outputs.
+The output of a Mapper or map job (key-value pairs) is input to the Reducer.
+The reducer receives the key-value pair from multiple map jobs.
+Then, the reducer aggregates those intermediate data tuples (intermediate key-value pair) into a smaller set of tuples or key-value pairs which is the final output.
+
+Why we have to come up with new technologies like Spark, why Mapreduce was not efficient while thinking of Huge data.
+
+Data sharing is slow in MapReduce due to replication, serialization, and disk IO. Most of the Hadoop applications, they spend more than 90% of the time doing HDFS read-write operations.
+
+Recognizing this problem, researchers developed a specialized framework called Apache Spark. The key idea of spark is Resilient Distributed Datasets (RDD); it supports in-memory processing computation. This means, it stores the state of memory as an object across the jobs and the object is sharable between those jobs. Data sharing in memory is 10 to 100 times faster than network and Disk.
+
+
+
+As you have already seen the basic architectural overview of Apache Spark, now let’s dive deeper into its working.
+
+In your master node, you have the driver program, which drives your application. The code you are writing behaves as a driver program or if you are using the interactive shell, the shell acts as the driver program.
+
+Inside the driver program, the first thing you do is, you create a Spark Context. 
+
+Assume that the Spark context is a gateway to all the Spark functionalities. It is similar to your database connection. Any command you execute in your database goes through the database connection. Likewise, anything you do on Spark goes through Spark context.
+
+Now, this Spark context works with the cluster manager to manage various jobs. The driver program & Spark context takes care of the job execution within the cluster. A job is split into multiple tasks which are distributed over the worker node. Anytime an RDD is created in Spark context, it can be distributed across various nodes and can be cached there.
+
+
+Worker nodes are the slave nodes whose job is to basically execute the tasks. These tasks are then executed on the partitioned RDDs in the worker node and hence returns back the result to the Spark Context.
+
+Spark Context takes the job, breaks the job in tasks and distribute them to the worker nodes. These tasks work on the partitioned RDD, perform operations, collect the results and return to the main Spark Context.
+
+If you increase the number of workers, then you can divide jobs into more partitions and execute them parallelly over multiple systems. It will be a lot faster.
+
+With the increase in the number of workers, memory size will also increase & you can cache the jobs to execute it faster.
+
+
+
+
+
+Open Spark Shell
+The following command is used to open Spark shell.
+
+$ spark-shell
+Let us create a simple RDD from the text file. 
+
+Use the following command to create a simple RDD.
+
+scala> val inputfile = sc.textFile(“hello.txt”)
+The output for the above command is
+
+inputfile: org.apache.spark.rdd.RDD[String] = input.txt MappedRDD[1] at textFile at <console>:12
+The Spark RDD API introduces few Transformations and few Actions to manipulate RDD.
+
+
+pen Spark Shell
+The following command is used to open Spark shell.
+
+$ spark-shell
+Create simple RDD
+Let us create a simple RDD from the text file. Use the following command to create a simple RDD.
+
+scala> val inputfile = sc.textFile(“hello.txt”)
+The output for the above command is
+
+inputfile: org.apache.spark.rdd.RDD[String] = input.txt MappedRDD[1] at textFile at <console>:12
+
+
+The following command is used for reading a file from given location. Here, new RDD is created with the name of inputfile. The String which is given as an argument in the textFile(“”) method is absolute path for the input file name. However, if only the file name is given, then it means that the input file is in the current location.
+
+
+
+Our aim is to count the words in a file. Create a flat map for splitting each line into words (flatMap(line ? line.split(“ ”)).
+
+Next, read each word and store in Map (<key, value> = <word,1>)using map function (map(word ? (word, 1)).
+
+Finally, reduce those keys by adding values of similar keys (reduceByKey(_+_)).
+
+The following command is used for executing word count logic. After executing this, you will not find any output because this is not an action, this is a transformation; pointing a new RDD or tell spark to what to do with the given data)
+
+
+
+val counts = inputfile.flatMap(line => line.split(" ")).map(word => (word, 1)).reduceByKey(_+_);
+
+Current RDD
+While working with the RDD, if you want to know about current RDD, then use the following command. It will show you the description about current RDD and its dependencies for debugging.
+
+scala> counts.toDebugString
+
+
+Caching the Transformations
+You can mark an RDD to be persisted using the persist() or cache() methods on it. The first time it is computed in an action, it will be kept in memory on the nodes. Use the following command to store the intermediate transformations in memory.
+
+scala> counts.cache()
+Applying the Action
+Applying an action, like store all the transformations, results into a text file. The String argument for saveAsTextFile(“ ”) method is the absolute path of output folder. Try the following command to save the output in a text file. In the following example, ‘output’ folder is in current location.
+
+scala> counts.saveAsTextFile("output")
+Checking the Output
+Open another terminal to go to home directory (where spark is executed in the other terminal). Use the following commands for checking output directory.
+
+[hadoop@localhost ~]$ cd output/ 
+[hadoop@localhost output]$ ls -1 
+ 
+part-00000 
+part-00001 
+_SUCCESS
+The following command is used to see output from Part-00000 files.
+
+[hadoop@localhost output]$ cat part-00000
+Output
+(people,1) 
+(are,2) 
+(not,1) 
+(as,8) 
+(beautiful,2) 
+(they, 7) 
+(look,1) 
+The following command is used to see output from Part-00001 files.
+
+
+
+
+
+scala>
+
+
+
+
+
+
+Before UN-persisting, if you want to see the storage space that is used for this application, then use the following URL in your browser.
+
+http://localhost:4040
+You will see the following screen, which shows the storage space used for the application, which are running on the Spark shell.
+
+
+
+
+
+
+
+
+
+
+
+
+

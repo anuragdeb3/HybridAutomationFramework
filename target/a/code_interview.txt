@@ -1,0 +1,120 @@
+/*
+ * Click `Run` to execute the snippet below!
+ */
+
+import java.io.*;
+import java.util.*;
+
+/*
+ * To execute Java, please define "static void main" on a class
+ * named Solution.
+ *
+ * If you need more classes, simply define them inline.
+ 
+5 7 2 9 3 9 4 6 7
+1st incre to 2nd
+2nd decre to 3rd 
+
+ */
+
+class Solution {
+  public static void main(String[] args) {
+    ArrayList<Integer> strings = new ArrayList<>();
+    strings.add(5);  
+    strings.add(0);  
+    strings.add(2);  
+    strings.add(9);  
+    strings.add(3);
+    strings.add(0);
+    strings.add(7);
+    
+
+
+ // pascalTriangle(10);
+    
+   reArrange(strings) ;
+  
+
+  }
+  
+  
+  static void reArrange(ArrayList<Integer> num){
+  
+  
+  for(int i =0;i+1 <num.size();i++){
+    
+    
+    if(i%2!=0){
+      if(num.get(i) < num.get(i+1)){
+        
+       int temp = num.get(i);
+       num.set(i,num.get(i+1));
+       num.set(i+1,temp);
+        
+      }
+      
+      
+      
+    }
+    else {
+            if( num.get(i) > num.get(i+1) ){
+                     int temp = num.get(i);
+                     num.set(i,num.get(i+1));
+                     num.set(i+1,temp);
+    
+            }
+    }  
+      
+  }
+      System.out.println(num);
+    
+  //}
+    
+    
+   // System.out.println(num);
+    
+  
+  }
+  
+  
+  
+  
+  
+  
+ static void pascalTriangle(int n){
+   
+   
+   
+   
+    long [] [] num = new long [n][n];
+   
+   
+    for(int line =0;line <n;line++){
+      
+     for(int i=0;i<=line;i++){
+       if(line==1 || i==0 ){
+        num[line][i]=1; 
+       }
+       else
+         num[line][i]=num[line-1][i-1]+ num[line-1][i];
+       
+       System.out.print(num[line][i]+" " );
+       
+     }
+      
+       System.out.println("");
+      
+      
+      
+    }
+    
+    
+    
+    
+  }
+  
+  
+  
+  
+  
+}

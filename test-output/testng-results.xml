@@ -1,63 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="4" passed="4" failed="0" skipped="0">
+<testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2021-03-21T13:41:42Z" name="Default suite" finished-at="2021-03-21T13:41:43Z" duration-ms="1327">
+  <suite started-at="2021-04-11T11:51:50Z" name="Default suite" finished-at="2021-04-11T11:52:00Z" duration-ms="9723">
     <groups>
     </groups>
-    <test started-at="2021-03-21T13:41:42Z" name="Default test" finished-at="2021-03-21T13:41:43Z" duration-ms="1327">
-      <class name="com.testcases.TestData">
-        <test-method signature="DatatoTest(java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:com.testcases.TestData@7d3d101b]" started-at="2021-03-21T13:41:43Z" name="DatatoTest" data-provider="SearchData" finished-at="2021-03-21T13:41:43Z" duration-ms="27" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[Anurag]]>
-              </value>
-            </param>
-            <param index="1">
-              <value>
-                <![CDATA[1234.0]]>
-              </value>
-            </param>
-            <param index="2">
-              <value>
-                <![CDATA[Hi]]>
-              </value>
-            </param>
-          </params>
+    <test started-at="2021-04-11T11:51:50Z" name="Default test" finished-at="2021-04-11T11:52:00Z" duration-ms="9723">
+      <class name="com.testcases.LoginPageTest">
+        <test-method is-config="true" signature="beforeTest()[pri:0, instance:com.testcases.LoginPageTest@71e9a896]" started-at="2021-04-11T11:51:50Z" name="beforeTest" finished-at="2021-04-11T11:51:55Z" duration-ms="4778" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- DatatoTest -->
-        <test-method signature="DatatoTest(java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:com.testcases.TestData@7d3d101b]" started-at="2021-03-21T13:41:43Z" name="DatatoTest" data-provider="SearchData" finished-at="2021-03-21T13:41:43Z" duration-ms="4" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[Chandan]]>
-              </value>
-            </param>
-            <param index="1">
-              <value>
-                <![CDATA[324j3]]>
-              </value>
-            </param>
-            <param index="2">
-              <value>
-                <![CDATA[Hello]]>
-              </value>
-            </param>
-          </params>
+        </test-method> <!-- beforeTest -->
+        <test-method signature="login()[pri:0, instance:com.testcases.LoginPageTest@71e9a896]" started-at="2021-04-11T11:51:55Z" name="login" finished-at="2021-04-11T11:51:59Z" duration-ms="3988" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- DatatoTest -->
-        <test-method signature="DatatoTest1()[pri:0, instance:com.testcases.TestData@7d3d101b]" started-at="2021-03-21T13:41:43Z" name="DatatoTest1" finished-at="2021-03-21T13:41:43Z" duration-ms="2" status="PASS">
+        </test-method> <!-- login -->
+        <test-method is-config="true" signature="afterTest()[pri:0, instance:com.testcases.LoginPageTest@71e9a896]" started-at="2021-04-11T11:51:59Z" name="afterTest" finished-at="2021-04-11T11:52:00Z" duration-ms="896" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- DatatoTest1 -->
-        <test-method signature="DatatoTest2()[pri:0, instance:com.testcases.TestData@7d3d101b]" started-at="2021-03-21T13:41:43Z" name="DatatoTest2" finished-at="2021-03-21T13:41:43Z" duration-ms="2" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- DatatoTest2 -->
-      </class> <!-- com.testcases.TestData -->
+        </test-method> <!-- afterTest -->
+      </class> <!-- com.testcases.LoginPageTest -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>
