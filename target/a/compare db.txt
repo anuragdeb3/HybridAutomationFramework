@@ -1,5 +1,0 @@
-https://medium.com/trinity-mirror-digital/comparing-two-postgresql-databases-with-python-a98926ba9945
-https://github.com/BhanuAkaveeti/Python/blob/master/TableCompare/TableCompare.py
-https://capitalone.github.io/datacompy/pandas_usage.html#reports
-https://github.com/capitalone/datacompy
-
